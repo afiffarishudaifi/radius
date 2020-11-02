@@ -73,8 +73,6 @@
                         date_default_timezone_set('Asia/Jakarta');
                         $tahun = date("Y");
 
-
-
                         $query1 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 01 and year(acctstoptime) = '$tahun'";
                         $sql1 = mysqli_query($koneksi, $query1);
                         $data1 = mysqli_fetch_row($sql1);
@@ -82,18 +80,8 @@
                             $up1 = 0;
                             $down1 = 0;
                         } else {
-                            $up1 = $data1[0];
-                            $down1 = $data1[1];
-                            if ($up1 >= 1048576 && $down1 >= 1048576) {
-                                $up1 = substr($data1[0] / 1048576, 0, 5);
-                                $down1 = substr($data1[1] / 1048576, 0, 5);
-                            } elseif ($up1 >= 1073741824 && $down1 >= 1073741824) {
-                                $up1 = substr($data1[0] / 1073741824, 0, 5);
-                                $down1 = substr($data1[1] / 1073741824, 0, 5);
-                            } else {
-                                $up1 = $data1[0];
-                                $down1 = $data1[1];
-                            }
+                            $up1 = substr($data1[0] / 1073741824, 0, 11);
+                            $down1 = substr($data1[1] / 1073741824, 0, 11);
                         }
 
                         $query2 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 02 and year(acctstoptime) = $tahun";
@@ -103,18 +91,8 @@
                             $up2 = 0;
                             $down2 = 0;
                         } else {
-                            $up2 = $data2[0];
-                            $down2 = $data2[1];
-                            if ($up2 >= 1048576 && $down2 >= 1048576) {
-                                $up2 = substr($data2[0] / 1048576, 0, 5);
-                                $down2 = substr($data2[1] / 1048576, 0, 5);
-                            } elseif ($up2 >= 1073741824 && $down2 >= 1073741824) {
-                                $up2 = substr($data2[0] / 1073741824, 0, 5);
-                                $down2 = substr($data2[1] / 1073741824, 0, 5);
-                            } else {
-                                $up2 = $data2[0];
-                                $down2 = $data2[1];
-                            }
+                            $up2 = substr($data2[0] / 1073741824, 0, 11);
+                            $down2 = substr($data2[1] / 1073741824, 0, 11);
                         }
 
 
@@ -125,18 +103,8 @@
                             $up3 = 0;
                             $down3 = 0;
                         } else {
-                            $up3 = $data3[0];
-                            $down3 = $data3[1];
-                            if ($up3 >= 3048576 && $down3 >= 1048576) {
-                                $up3 = substr($data3[0] / 1048576, 0, 5);
-                                $down3 = substr($data3[1] / 1048576, 0, 5);
-                            } elseif ($up3 >= 1073741824 && $down3 >= 1073741824) {
-                                $up3 = substr($data3[0] / 1073741824, 0, 5);
-                                $down3 = substr($data3[1] / 1073741824, 0, 5);
-                            } else {
-                                $up3 = $data3[0];
-                                $down3 = $data3[1];
-                            }
+                            $up3 = substr($data3[0] / 1073741824, 0, 11);
+                            $down3 = substr($data3[1] / 1073741824, 0, 11);
                         }
 
 
@@ -147,40 +115,20 @@
                             $up4 = 0;
                             $down4 = 0;
                         } else {
-                            $up4 = $data4[0];
-                            $down4 = $data4[1];
-                            if ($up4 >= 1048576 && $down4 >= 1048576) {
-                                $up4 = $data4[0] / 1048576;
-                                $down4 = $data4[1] / 1048576;
-                            } elseif ($up4 >= 1073741824 && $down4 >= 1073741824) {
-                                $up4 = $data4[0] / 1073741824;
-                                $down4 = $data4[1] / 1073741824;
-                            } else {
-                                $up4 = $data4[0];
-                                $down4 = $data4[1];
-                            }
+                            $up4 = substr($data4[0] / 1073741824, 0, 11);
+                            $down4 = substr($data4[1] / 1073741824, 0, 11);
                         }
 
 
                         $query5 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 05 and year(acctstoptime) = $tahun";
-                        $sql5 = mysqli_query($koneksi, $query5);
-                        $data5 = mysqli_fetch_row($sql5);
+                        $sql5 = mysqli_query($koneksi, $query11);
+                        $data5 = mysqli_fetch_row($sql11);
                         if ($data5[0] == NULL && $data5[1] == NULL) {
                             $up5 = 0;
                             $down5 = 0;
                         } else {
-                            $up5 = $data5[0];
-                            $down5 = $data5[1];
-                            if ($up5 >= 1048576 && $down5 >= 1048576) {
-                                $up5 = $data5[0] / 1048576;
-                                $down5 = $data5[1] / 1048576;
-                            } elseif ($up5 >= 1073741824 && $down5 >= 1073741824) {
-                                $up5 = $data5[0] / 1073741824;
-                                $down5 = $data5[1] / 1073741824;
-                            } else {
-                                $up5 = $data5[0];
-                                $down5 = $data5[1];
-                            }
+                            $up5 = substr($data5[0] / 1073741824, 0, 11);
+                            $down5 = substr($data5[1] / 1073741824, 0, 11);
                         }
 
 
@@ -191,18 +139,8 @@
                             $up6 = 0;
                             $down6 = 0;
                         } else {
-                            $up6 = $data6[0];
-                            $down6 = $data6[1];
-                            if ($up6 >= 1048576 && $down6 >= 1048576) {
-                                $up6 = $data6[0] / 1048576;
-                                $down6 = $data6[1] / 1048576;
-                            } elseif ($up6 >= 1073741824 && $down6 >= 1073741824) {
-                                $up6 = $data6[0] / 1073741824;
-                                $down6 = $data6[1] / 1073741824;
-                            } else {
-                                $up6 = $data6[0];
-                                $down6 = $data6[1];
-                            }
+                            $up6 = substr($data6[0] / 1073741824, 0, 11);
+                            $down6 = substr($data6[1] / 1073741824, 0, 11);
                         }
 
 
@@ -213,18 +151,8 @@
                             $up7 = 0;
                             $down7 = 0;
                         } else {
-                            $up7 = $data7[0];
-                            $down7 = $data7[1];
-                            if ($up7 >= 1048576 && $down7 >= 1048576) {
-                                $up7 = $data7[0] / 1048576;
-                                $down7 = $data7[1] / 1048576;
-                            } elseif ($up7 >= 1073741824 && $down7 >= 1073741824) {
-                                $up7 = $data7[0] / 1073741824;
-                                $down7 = $data7[1] / 1073741824;
-                            } else {
-                                $up7 = $data7[0];
-                                $down7 = $data7[1];
-                            }
+                            $up7 = substr($data7[0] / 1073741824, 0, 11);
+                            $down7 = substr($data7[1] / 1073741824, 0, 11);
                         }
 
 
@@ -235,18 +163,8 @@
                             $up8 = 0;
                             $down8 = 0;
                         } else {
-                            $up8 = $data8[0];
-                            $down8 = $data8[1];
-                            if ($up8 >= 1048576 && $down8 >= 1048576) {
-                                $up8 = $data8[0] / 1048576;
-                                $down8 = $data8[1] / 1048576;
-                            } elseif ($up8 >= 1073741824 && $down8 >= 1073741824) {
-                                $up8 = $data8[0] / 1073741824;
-                                $down8 = $data8[1] / 1073741824;
-                            } else {
-                                $up8 = $data8[0];
-                                $down8 = $data8[1];
-                            }
+                            $up8 = substr($data8[0] / 1073741824, 0, 11);
+                            $down8 = substr($data8[1] / 1073741824, 0, 11);
                         }
 
 
@@ -257,18 +175,8 @@
                             $up9 = 0;
                             $down9 = 0;
                         } else {
-                            $up9 = $data9[0];
-                            $down9 = $data9[1];
-                            if ($up9 >= 1048576 && $down9 >= 1048576) {
-                                $up9 = $data9[0] / 1048576;
-                                $down9 = $data9[1] / 1048576;
-                            } elseif ($up9 >= 1073741824 && $down9 >= 1073741824) {
-                                $up9 = $data9[0] / 1073741824;
-                                $down9 = $data9[1] / 1073741824;
-                            } else {
-                                $up9 = $data9[0];
-                                $down9 = $data9[1];
-                            }
+                            $up9 = substr($data9[0] / 1073741824, 0, 11);
+                            $down9 = substr($data9[1] / 1073741824, 0, 11);
                         }
 
 
@@ -279,18 +187,8 @@
                             $up10 = 0;
                             $down10 = 0;
                         } else {
-                            $up10 = $data10[0];
-                            $down10 = $data10[1];
-                            if ($up10 >= 1048576 && $down10 >= 1048576) {
-                                $up10 = substr($data10[0] / 1048576, 0, 5);
-                                $down10 = substr($data10[1] / 1048576, 0, 5);
-                            } elseif ($up10 >= 1073741824 && $down10 >= 1073741824) {
-                                $up10 = substr($data10[0] / 1073741824, 0, 5);
-                                $down10 = substr($data10[1] / 1073741824, 0, 5);
-                            } else {
-                                $up10 = $data10[0];
-                                $down10 = $data10[1];
-                            }
+                            $up10 = substr($data10[0] / 1073741824, 0, 11);
+                            $down10 = substr($data10[1] / 1073741824, 0, 11);
                         }
 
 
@@ -301,18 +199,8 @@
                             $up11 = 0;
                             $down11 = 0;
                         } else {
-                            $up11 = $data11[0];
-                            $down11 = $data11[1];
-                            if ($up11 >= 1048576 && $down11 >= 1048576) {
-                                $up11 = $data11[0] / 1048576;
-                                $down11 = $data11[1] / 1048576;
-                            } elseif ($up11 >= 1073741824 && $down11 >= 1073741824) {
-                                $up11 = $data11[0] / 1073741824;
-                                $down11 = $data11[1] / 1073741824;
-                            } else {
-                                $up11 = $data11[0];
-                                $down11 = $data11[1];
-                            }
+                            $up11 = substr($data11[0] / 1073741824, 0, 11);
+                            $down11 = substr($data11[1] / 1073741824, 0, 11);
                         }
 
 
@@ -323,18 +211,8 @@
                             $up12 = 0;
                             $down12 = 0;
                         } else {
-                            $up12 = $data12[0];
-                            $down12 = $data12[1];
-                            if ($up12 >= 1048576 && $down12 >= 1048576) {
-                                $up12 = $data12[0] / 1048576;
-                                $down12 = $data12[1] / 1048576;
-                            } elseif ($up12 >= 1073741824 && $down12 >= 1073741824) {
-                                $up12 = $data12[0] / 1073741824;
-                                $down12 = $data12[1] / 1073741824;
-                            } else {
-                                $up12 = $data12[0];
-                                $down12 = $data12[1];
-                            }
+                            $up12 = substr($data12[0] / 1073741824, 0, 11);
+                            $down12 = substr($data12[1] / 1073741824, 0, 11);
                         }
 
                         ?>
@@ -343,14 +221,7 @@
                         <div class="card col-12">
                             <div class="card-header">
                                 <center>
-                                    <?php if (
-                                        $up1 >= 1073741824 && $up2 >= 1073741824 && $up3 >= 1073741824 && $up4 >= 1073741824 && $up5 >= 1073741824 && $up6 >= 1073741824 && $up7 >= 1073741824 && $up8 >= 1073741824 && $up9 >= 1073741824 && $up10 >= 1073741824 && $up11 >= 1073741824 && $up12 >= 1073741824
-                                        && $down1 >= 1073741824 && $down2 >= 1073741824 && $down3 >= 1073741824 && $down4 >= 1073741824 && $down5 >= 1073741824 && $down6 >= 1073741824 && $down7 >= 1073741824 && $down8 >= 1073741824 && $down9 >= 1073741824 && $down10 >= 1073741824 && $down11 >= 1073741824 && $down12 >= 1073741824
-                                    ) { ?>
-                                        <h4>Bandwidth(Gigabyte)</h4>
-                                    <?php } else { ?>
-                                        <h4>Bandwidth(Megabyte) </h4>
-                                    <?php } ?>
+                                    <h4>Bandwidth(Gigabyte) </h4>
                                 </center>
                             </div>
                             <div class="card-body">
@@ -390,7 +261,7 @@
     var lineChartData = {
         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
         datasets: [{
-            label: 'Download',
+            label: 'Download(Gb)',
             borderColor: window.chartColors.red,
             backgroundColor: window.chartColors.red,
             fill: false,
@@ -402,7 +273,7 @@
             ],
             yAxisID: 'y-axis-1',
         }, {
-            label: 'Upload',
+            label: 'Upload(Gb)',
             borderColor: window.chartColors.blue,
             backgroundColor: window.chartColors.blue,
             fill: false,
