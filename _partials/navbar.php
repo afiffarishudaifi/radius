@@ -13,14 +13,12 @@
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item">
-            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Afif Faris Hudaifi
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Afif Faris Hudaifi
                 <i class="fas fa-user fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item " data-toggle="modal" data-target="#logoutModal" href=""><i
-                        class="fas fa-power-off mr-1"></i>Keluar</a>
+                <!-- <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item " data-toggle="modal" data-target="#logoutModal" href=""><i class="fas fa-power-off mr-1"></i>Keluar</a>
             </div>
         </li>
     </ul>

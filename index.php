@@ -53,45 +53,14 @@
                                     ?>
                                     <h3><?php echo $total_online[0]; ?></h3>
 
-                                    <p>User Online</p>
+                                    <p>Online Users</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="online-user.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
-
-                        <!-- <div class="col-lg-3 col-6">
-
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>44</h3>
-
-                        <p>User Registrations</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>  -->
-
 
                     </div>
                     <!-- /.row -->
@@ -106,7 +75,7 @@
 
 
 
-                        $query1 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 01 and year(acctstoptime) = '$tahun'";
+                        $query1 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 01 and year(acctstoptime) = '$tahun'";
                         $sql1 = mysqli_query($koneksi, $query1);
                         $data1 = mysqli_fetch_row($sql1);
                         if ($data1[0] == NULL && $data1[1] == NULL) {
@@ -115,9 +84,19 @@
                         } else {
                             $up1 = $data1[0];
                             $down1 = $data1[1];
+                            if ($up1 >= 1048576 && $down1 >= 1048576) {
+                                $up1 = substr($data1[0] / 1048576, 0, 5);
+                                $down1 = substr($data1[1] / 1048576, 0, 5);
+                            } elseif ($up1 >= 1073741824 && $down1 >= 1073741824) {
+                                $up1 = substr($data1[0] / 1073741824, 0, 5);
+                                $down1 = substr($data1[1] / 1073741824, 0, 5);
+                            } else {
+                                $up1 = $data1[0];
+                                $down1 = $data1[1];
+                            }
                         }
 
-                        $query2 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 02 and year(acctstoptime) = $tahun";
+                        $query2 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 02 and year(acctstoptime) = $tahun";
                         $sql2 = mysqli_query($koneksi, $query2);
                         $data2 = mysqli_fetch_row($sql2);
                         if ($data2[0] == NULL && $data2[1] == NULL) {
@@ -126,10 +105,20 @@
                         } else {
                             $up2 = $data2[0];
                             $down2 = $data2[1];
+                            if ($up2 >= 1048576 && $down2 >= 1048576) {
+                                $up2 = substr($data2[0] / 1048576, 0, 5);
+                                $down2 = substr($data2[1] / 1048576, 0, 5);
+                            } elseif ($up2 >= 1073741824 && $down2 >= 1073741824) {
+                                $up2 = substr($data2[0] / 1073741824, 0, 5);
+                                $down2 = substr($data2[1] / 1073741824, 0, 5);
+                            } else {
+                                $up2 = $data2[0];
+                                $down2 = $data2[1];
+                            }
                         }
 
 
-                        $query3 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 03 and year(acctstoptime) = $tahun";
+                        $query3 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 03 and year(acctstoptime) = $tahun";
                         $sql3 = mysqli_query($koneksi, $query3);
                         $data3 = mysqli_fetch_row($sql3);
                         if ($data3[0] == NULL && $data3[1] == NULL) {
@@ -138,10 +127,20 @@
                         } else {
                             $up3 = $data3[0];
                             $down3 = $data3[1];
+                            if ($up3 >= 3048576 && $down3 >= 1048576) {
+                                $up3 = substr($data3[0] / 1048576, 0, 5);
+                                $down3 = substr($data3[1] / 1048576, 0, 5);
+                            } elseif ($up3 >= 1073741824 && $down3 >= 1073741824) {
+                                $up3 = substr($data3[0] / 1073741824, 0, 5);
+                                $down3 = substr($data3[1] / 1073741824, 0, 5);
+                            } else {
+                                $up3 = $data3[0];
+                                $down3 = $data3[1];
+                            }
                         }
 
 
-                        $query4 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 04 and year(acctstoptime) = $tahun";
+                        $query4 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 04 and year(acctstoptime) = $tahun";
                         $sql4 = mysqli_query($koneksi, $query4);
                         $data4 = mysqli_fetch_row($sql4);
                         if ($data4[0] == NULL && $data4[1] == NULL) {
@@ -150,10 +149,20 @@
                         } else {
                             $up4 = $data4[0];
                             $down4 = $data4[1];
+                            if ($up4 >= 1048576 && $down4 >= 1048576) {
+                                $up4 = $data4[0] / 1048576;
+                                $down4 = $data4[1] / 1048576;
+                            } elseif ($up4 >= 1073741824 && $down4 >= 1073741824) {
+                                $up4 = $data4[0] / 1073741824;
+                                $down4 = $data4[1] / 1073741824;
+                            } else {
+                                $up4 = $data4[0];
+                                $down4 = $data4[1];
+                            }
                         }
 
 
-                        $query5 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 05 and year(acctstoptime) = $tahun";
+                        $query5 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 05 and year(acctstoptime) = $tahun";
                         $sql5 = mysqli_query($koneksi, $query5);
                         $data5 = mysqli_fetch_row($sql5);
                         if ($data5[0] == NULL && $data5[1] == NULL) {
@@ -162,10 +171,20 @@
                         } else {
                             $up5 = $data5[0];
                             $down5 = $data5[1];
+                            if ($up5 >= 1048576 && $down5 >= 1048576) {
+                                $up5 = $data5[0] / 1048576;
+                                $down5 = $data5[1] / 1048576;
+                            } elseif ($up5 >= 1073741824 && $down5 >= 1073741824) {
+                                $up5 = $data5[0] / 1073741824;
+                                $down5 = $data5[1] / 1073741824;
+                            } else {
+                                $up5 = $data5[0];
+                                $down5 = $data5[1];
+                            }
                         }
 
 
-                        $query6 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 06 and year(acctstoptime) = $tahun";
+                        $query6 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 06 and year(acctstoptime) = $tahun";
                         $sql6 = mysqli_query($koneksi, $query6);
                         $data6 = mysqli_fetch_row($sql6);
                         if ($data6[0] == NULL && $data6[1] == NULL) {
@@ -174,10 +193,20 @@
                         } else {
                             $up6 = $data6[0];
                             $down6 = $data6[1];
+                            if ($up6 >= 1048576 && $down6 >= 1048576) {
+                                $up6 = $data6[0] / 1048576;
+                                $down6 = $data6[1] / 1048576;
+                            } elseif ($up6 >= 1073741824 && $down6 >= 1073741824) {
+                                $up6 = $data6[0] / 1073741824;
+                                $down6 = $data6[1] / 1073741824;
+                            } else {
+                                $up6 = $data6[0];
+                                $down6 = $data6[1];
+                            }
                         }
 
 
-                        $query7 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 07 and year(acctstoptime) = $tahun";
+                        $query7 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 07 and year(acctstoptime) = $tahun";
                         $sql7 = mysqli_query($koneksi, $query7);
                         $data7 = mysqli_fetch_row($sql7);
                         if ($data7[0] == NULL && $data7[1] == NULL) {
@@ -186,10 +215,20 @@
                         } else {
                             $up7 = $data7[0];
                             $down7 = $data7[1];
+                            if ($up7 >= 1048576 && $down7 >= 1048576) {
+                                $up7 = $data7[0] / 1048576;
+                                $down7 = $data7[1] / 1048576;
+                            } elseif ($up7 >= 1073741824 && $down7 >= 1073741824) {
+                                $up7 = $data7[0] / 1073741824;
+                                $down7 = $data7[1] / 1073741824;
+                            } else {
+                                $up7 = $data7[0];
+                                $down7 = $data7[1];
+                            }
                         }
 
 
-                        $query8 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 08 and year(acctstoptime) = $tahun";
+                        $query8 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 08 and year(acctstoptime) = $tahun";
                         $sql8 = mysqli_query($koneksi, $query8);
                         $data8 = mysqli_fetch_row($sql8);
                         if ($data8[0] == NULL && $data8[1] == NULL) {
@@ -198,10 +237,20 @@
                         } else {
                             $up8 = $data8[0];
                             $down8 = $data8[1];
+                            if ($up8 >= 1048576 && $down8 >= 1048576) {
+                                $up8 = $data8[0] / 1048576;
+                                $down8 = $data8[1] / 1048576;
+                            } elseif ($up8 >= 1073741824 && $down8 >= 1073741824) {
+                                $up8 = $data8[0] / 1073741824;
+                                $down8 = $data8[1] / 1073741824;
+                            } else {
+                                $up8 = $data8[0];
+                                $down8 = $data8[1];
+                            }
                         }
 
 
-                        $query9 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 09 and year(acctstoptime) = $tahun";
+                        $query9 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 09 and year(acctstoptime) = $tahun";
                         $sql9 = mysqli_query($koneksi, $query9);
                         $data9 = mysqli_fetch_row($sql9);
                         if ($data9[0] == NULL && $data9[1] == NULL) {
@@ -210,10 +259,20 @@
                         } else {
                             $up9 = $data9[0];
                             $down9 = $data9[1];
+                            if ($up9 >= 1048576 && $down9 >= 1048576) {
+                                $up9 = $data9[0] / 1048576;
+                                $down9 = $data9[1] / 1048576;
+                            } elseif ($up9 >= 1073741824 && $down9 >= 1073741824) {
+                                $up9 = $data9[0] / 1073741824;
+                                $down9 = $data9[1] / 1073741824;
+                            } else {
+                                $up9 = $data9[0];
+                                $down9 = $data9[1];
+                            }
                         }
 
 
-                        $query10 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 10 and year(acctstoptime) = $tahun";
+                        $query10 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 10 and year(acctstoptime) = $tahun";
                         $sql10 = mysqli_query($koneksi, $query10);
                         $data10 = mysqli_fetch_row($sql10);
                         if ($data10[0] == NULL && $data10[1] == NULL) {
@@ -222,10 +281,20 @@
                         } else {
                             $up10 = $data10[0];
                             $down10 = $data10[1];
+                            if ($up10 >= 1048576 && $down10 >= 1048576) {
+                                $up10 = substr($data10[0] / 1048576, 0, 5);
+                                $down10 = substr($data10[1] / 1048576, 0, 5);
+                            } elseif ($up10 >= 1073741824 && $down10 >= 1073741824) {
+                                $up10 = substr($data10[0] / 1073741824, 0, 5);
+                                $down10 = substr($data10[1] / 1073741824, 0, 5);
+                            } else {
+                                $up10 = $data10[0];
+                                $down10 = $data10[1];
+                            }
                         }
 
 
-                        $query11 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 11 and year(acctstoptime) = $tahun";
+                        $query11 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 11 and year(acctstoptime) = $tahun";
                         $sql11 = mysqli_query($koneksi, $query11);
                         $data11 = mysqli_fetch_row($sql11);
                         if ($data11[0] == NULL && $data11[1] == NULL) {
@@ -234,10 +303,20 @@
                         } else {
                             $up11 = $data11[0];
                             $down11 = $data11[1];
+                            if ($up11 >= 1048576 && $down11 >= 1048576) {
+                                $up11 = $data11[0] / 1048576;
+                                $down11 = $data11[1] / 1048576;
+                            } elseif ($up11 >= 1073741824 && $down11 >= 1073741824) {
+                                $up11 = $data11[0] / 1073741824;
+                                $down11 = $data11[1] / 1073741824;
+                            } else {
+                                $up11 = $data11[0];
+                                $down11 = $data11[1];
+                            }
                         }
 
 
-                        $query12 = "SELECT (SUM(acctinputoctets)/1048576) as 'upload' , (SUM(acctoutputoctets)/1048576) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 12 and year(acctstoptime) = $tahun";
+                        $query12 = "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 12 and year(acctstoptime) = $tahun";
                         $sql12 = mysqli_query($koneksi, $query12);
                         $data12 = mysqli_fetch_row($sql12);
                         if ($data12[0] == NULL && $data12[1] == NULL) {
@@ -246,23 +325,37 @@
                         } else {
                             $up12 = $data12[0];
                             $down12 = $data12[1];
+                            if ($up12 >= 1048576 && $down12 >= 1048576) {
+                                $up12 = $data12[0] / 1048576;
+                                $down12 = $data12[1] / 1048576;
+                            } elseif ($up12 >= 1073741824 && $down12 >= 1073741824) {
+                                $up12 = $data12[0] / 1073741824;
+                                $down12 = $data12[1] / 1073741824;
+                            } else {
+                                $up12 = $data12[0];
+                                $down12 = $data12[1];
+                            }
                         }
 
                         ?>
 
                         <!-- LINE CHART -->
-                        <div class="card card-primary col-12">
+                        <div class="card col-12">
                             <div class="card-header">
-                                <h3 class="card-title">Bandwidth(MegaByte)</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
+                                <center>
+                                    <?php if (
+                                        $up1 >= 1073741824 && $up2 >= 1073741824 && $up3 >= 1073741824 && $up4 >= 1073741824 && $up5 >= 1073741824 && $up6 >= 1073741824 && $up7 >= 1073741824 && $up8 >= 1073741824 && $up9 >= 1073741824 && $up10 >= 1073741824 && $up11 >= 1073741824 && $up12 >= 1073741824
+                                        && $down1 >= 1073741824 && $down2 >= 1073741824 && $down3 >= 1073741824 && $down4 >= 1073741824 && $down5 >= 1073741824 && $down6 >= 1073741824 && $down7 >= 1073741824 && $down8 >= 1073741824 && $down9 >= 1073741824 && $down10 >= 1073741824 && $down11 >= 1073741824 && $down12 >= 1073741824
+                                    ) { ?>
+                                        <h4>Bandwidth(Gigabyte)</h4>
+                                    <?php } else { ?>
+                                        <h4>Bandwidth(Megabyte) </h4>
+                                    <?php } ?>
+                                </center>
                             </div>
                             <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                <div style="width:100%;">
+                                    <canvas id="canvas"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -291,88 +384,65 @@
 </html>
 
 <!-- page script -->
+
+
 <script>
-    $(function() {
-        /* ChartJS
-         * -------
-         * Here we will create a few charts using ChartJS
-         */
-
-        //--------------
-        //- LINE CHART -
-        //--------------
-
-        // Get context with jQuery - using jQuery's .get() method.
-
-
-
-        var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-
-        var lineChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Agustus', 'September',
-                'Oktober', 'November', 'Desember'
+    var lineChartData = {
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        datasets: [{
+            label: 'Download',
+            borderColor: window.chartColors.red,
+            backgroundColor: window.chartColors.red,
+            fill: false,
+            data: [<?php echo $down1; ?>, <?php echo $down2; ?>,
+                <?php echo $down3; ?>, <?php echo $down4; ?>, <?php echo $down5; ?>,
+                <?php echo $down6; ?>, <?php echo $down7; ?>, <?php echo $down8; ?>,
+                <?php echo $down9; ?>, <?php echo $down10; ?>, <?php echo $down11; ?>,
+                <?php echo $down12; ?>
             ],
-            datasets: [{
-                    label: "Upload",
-                    borderColor: "rgba(60,141,188,0.8)",
-                    pointRadius: false,
-                    pointColor: "#3b8bba",
-                    pointStrokeColor: "rgba(60,141,188,1)",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(60,141,188,1)",
-                    data: [<?php echo $up1; ?>, <?php echo $up2; ?>,
-                        <?php echo $up3; ?>, <?php echo $up4; ?>, <?php echo $up5; ?>,
-                        <?php echo $up6; ?>, <?php echo $up7; ?>, <?php echo $up8; ?>,
-                        <?php echo $up9; ?>, <?php echo $up10; ?>, <?php echo $up11; ?>,
-                        <?php echo $up12; ?>
-                    ]
-                },
-                {
-                    label: 'Download',
-                    borderColor: 'rgba(210, 214, 222, 1)',
-                    pointRadius: false,
-                    pointColor: 'rgba(210, 214, 222, 1)',
-                    pointStrokeColor: '#c1c7d1',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: [<?php echo $down1; ?>, <?php echo $down2; ?>,
-                        <?php echo $down3; ?>, <?php echo $down4; ?>, <?php echo $down5; ?>,
-                        <?php echo $down6; ?>, <?php echo $down7; ?>, <?php echo $down8; ?>,
-                        <?php echo $down9; ?>, <?php echo $down10; ?>, <?php echo $down11; ?>,
-                        <?php echo $down12; ?>
-                    ]
-                },
-            ]
-        }
+            yAxisID: 'y-axis-1',
+        }, {
+            label: 'Upload',
+            borderColor: window.chartColors.blue,
+            backgroundColor: window.chartColors.blue,
+            fill: false,
+            data: [<?php echo $up1; ?>, <?php echo $up2; ?>,
+                <?php echo $up3; ?>, <?php echo $up4; ?>, <?php echo $up5; ?>,
+                <?php echo $up6; ?>, <?php echo $up7; ?>, <?php echo $up8; ?>,
+                <?php echo $up9; ?>, <?php echo $up10; ?>, <?php echo $up11; ?>,
+                <?php echo $up12; ?>
+            ],
+            yAxisID: 'y-axis-1'
+        }]
+    };
 
-        var lineChartOptions = {
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: true,
-                    }
-                }],
-                yAxes: [{
-                    gridLines: {
-                        display: true,
-                    }
-                }]
-            }
-        }
-        lineChartData.datasets[0].fill = false;
-        lineChartOptions.datasetFill = false
-
-        // This will get the first returned node in the jQuery collection.
-        var areaChart = new Chart(lineChartCanvas, {
-            type: 'line',
+    window.onload = function() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = Chart.Line(ctx, {
             data: lineChartData,
-            options: lineChartOptions
-        })
+            options: {
+                responsive: true,
+                hoverMode: 'index',
+                stacked: true,
+                scales: {
+                    yAxes: [{
+                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                    }, {
+                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: false,
+                        position: 'right',
+                        id: 'y-axis-2',
 
-    })
+                        // grid line settings
+                        gridLines: {
+                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        },
+                    }],
+                }
+            }
+        });
+    };
 </script>
