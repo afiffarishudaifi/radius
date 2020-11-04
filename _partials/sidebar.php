@@ -58,7 +58,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <!-- <li class="nav-item has-treeview">
                             <a href="mng-batch.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
@@ -134,10 +134,18 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>IP-Pool</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="v_datawifi.php" class="nav-link">
+                        <i class="nav-icon fas fa-server"></i>
+                        <p>
+                            Data Wifi
+                        </p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item has-treeview">
                     <a href="bill-main.php" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
                         <p>
@@ -463,7 +471,7 @@
                             ?></p>
                         <p>Help</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
