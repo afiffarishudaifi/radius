@@ -36,140 +36,148 @@ include('./_partials/head.php');
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">id</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['id']; ?>" name="id" size="4" class="form-control" readonly required>
+                                                <input type="text" value="<?php echo $data['id']; ?>" name="id" size="4" class="form-control" readonly required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Kelurahan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['kelurahan']; ?>" name="kelurahan" placeholder="Kelurahan" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['kelurahan']; ?>" name="kelurahan" placeholder="Kelurahan" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">RW</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['rw']; ?>" name="rw" placeholder="RW" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['rw']; ?>" name="rw" placeholder="RW" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Alamat</label>
                                             <div class="col-sm-10">
-                                                <textarea type="text" value="<?php $data['alamat']; ?>" name="alamat" placeholder="Alamat" size="4" class="form-control" required></textarea>
+                                                <textarea type="text" value="<?php echo $data['alamat']; ?>" name="alamat" placeholder="Alamat" size="4" class="form-control" required><?php echo $data['alamat']; ?></textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Lokasi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['lokasi']; ?>" name="lokasi" placeholder="Lokasi" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['lokasi']; ?>" name="lokasi" placeholder="Lokasi" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Progress</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['progress']; ?>" name="progress" placeholder="Progress" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['progress']; ?>" name="progress" placeholder="Progress" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Status</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['status']; ?>" name="status" placeholder="Status" size="4" class="form-control">
+                                                <input type="text" value="<?php echo $data['status']; ?>" name="status" placeholder="Status" size="4" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Keterangan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['keterangan']; ?>" name="keterangan" placeholder="Keterangan" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['keterangan']; ?>" name="keterangan" placeholder="Keterangan" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Platform</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['platform']; ?>" name="platform" placeholder="Platform" size="4" class="form-control" required>
+                                                <select class="form-control select2" name="platform" placeholder="Platform" style="width: 100%;">
+                                                    <option value="WIRELESS" <?php if ($data['platform'] == 'WIRELESS') {
+                                                                                    echo 'selected';
+                                                                                } ?>>WIRELESS</option>
+                                                    <option value="FTTH" <?php if ($data['platform'] == 'FTTH') {
+                                                                                echo 'selected';
+                                                                            } ?>>FTTH</option>
+                                                </select>
+                                                <!-- <input type="text" value="<?php echo $data['platform']; ?>" name="platform" placeholder="Platform" size="4" class="form-control" required> -->
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Catatan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['catatan']; ?>" name="catatan" placeholder="Catatan" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['catatan']; ?>" name="catatan" placeholder="Catatan" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Tambahan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['tambahan']; ?>" name="tambahan" placeholder="tambahan" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['tambahan']; ?>" name="tambahan" placeholder="tambahan" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Olt</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['olt']; ?>" name="olt" placeholder="Olt" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['olt']; ?>" name="olt" placeholder="Olt" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Username PPOE</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['username_ppoe']; ?>" name="username_ppoe" placeholder="Username PPOE" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['username_ppoe']; ?>" name="username_ppoe" placeholder="Username PPOE" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Password PPOE</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['password_ppoe'] ?>" name="password_ppoe" placeholder="Password PPOE" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['password_ppoe'] ?>" name="password_ppoe" placeholder="Password PPOE" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">IP Modem</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['ip_modem']; ?>" name="ip_modem" placeholder="IP Modem" size="4" class="form-control">
+                                                <input type="text" value="<?php echo $data['ip_modem']; ?>" name="ip_modem" placeholder="IP Modem" size="4" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">IP Router</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['ip_router']; ?>" name="ip_router" placeholder="IP Router" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['ip_router']; ?>" name="ip_router" placeholder="IP Router" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">PIC</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['pic']; ?>" name="pic" placeholder="PIC" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['pic']; ?>" name="pic" placeholder="PIC" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">No HP</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['no_hp']; ?>" name="no_hp" placeholder="No Handphone" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['no_hp']; ?>" name="no_hp" placeholder="No Handphone" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Longitude</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['longitude']; ?>" name="longitude" placeholder="Longitude" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['longitude']; ?>" name="longitude" placeholder="Longitude" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Latitude</label>
                                             <div class="col-sm-10">
-                                                <input type="text" value="<?php $data['latitude']; ?>" name="latitude" placeholder="Latitude" size="4" class="form-control" required>
+                                                <input type="text" value="<?php echo $data['latitude']; ?>" name="latitude" placeholder="Latitude" size="4" class="form-control" required>
                                             </div>
                                         </div>
 
@@ -208,3 +216,8 @@ include('./_partials/head.php');
 </body>
 
 </html>
+<script type="text/javascript">
+    function goBack() {
+        window.history.back();
+    }
+</script>
