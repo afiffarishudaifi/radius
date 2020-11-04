@@ -7,9 +7,6 @@
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
         type="text/css" />
-    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <!-- Mapbox -->
 
     <div class="wrapper">
@@ -251,16 +248,45 @@
                     <div class="row">
                         <div class="card col-12">                            
                             <div id='map' style='height: 600px;'></div>
+                            <style>
+                            #marker {
+                                background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+                                background-size: cover;
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                            }
+                             
+                            .mapboxgl-popup {
+                                max-width: 200px;
+                            }
+                            </style>
 
                             <script>
                             mapboxgl.accessToken = 'pk.eyJ1IjoiYWZpZmZhcmlzIiwiYSI6ImNraDBtYWhxbTBnc2IycXNpYmowMXZ6YmQifQ.SuwwVsZ9ONc2mnEoJ0mvrw';
+                            var monument = [110.3960012, -7.7860458];
                             var map = new mapboxgl.Map({
-                                container: 'map',
-                                style: 'mapbox://styles/mapbox/streets-v11',
-                                // longitute, latitude
-                                center: [110.3960012, -7.7860458],
-                                zoom: 12
+                            container: 'map',
+                            style: 'mapbox://styles/mapbox/light-v10',
+                            center: monument,
+                            zoom: 15
                             });
+                             
+                            // create the popup
+                            var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                            'Kota Yogyakarta, Daerah Istimewa Yogyakarta.'
+                            );
+                             
+                            // create DOM element for the marker
+                            var el = document.createElement('div');
+                            el.id = 'marker';
+                             
+                            // create the marker
+                            new mapboxgl.Marker(el)
+                            .setLngLat(monument)
+                            .setPopup(popup) // sets a popup on this marker
+                            .addTo(map);
 
                             // Add pencarian geocoder
                             map.addControl(
@@ -283,101 +309,7 @@
                                     trackUserLocation: true
                                 })
                             );
-
-                            var marker = new mapboxgl.Marker()
-                                .setLngLat([110.3617331, -7.8046583])
-                                .addTo(map);
-
-                            map.on('load', function() {
-                                map.loadImage(
-                                    'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-                                    // Add an image to use as a custom marker
-                                    function(error, image) {
-                                        if (error) throw error;
-                                        map.addImage('custom-marker', image);
-
-                                        map.addSource('places', {
-                                            'type': 'geojson',
-                                            'data': {
-                                                'type': 'FeatureCollection',
-                                                'features': [{
-                                                        'type': 'Feature',
-                                                        'properties': {
-                                                            'description': '<strong>Taman Sari</strong><p>Make it Mount Pleasant is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>'
-                                                        },
-                                                        'geometry': {
-                                                            'type': 'Point',
-                                                            'coordinates': [110.3596876, -7.8105834]
-                                                        }
-                                                    },
-                                                    {
-                                                        'type': 'Feature',
-                                                        'properties': {
-                                                            'description': '<strong>Dekat Malioboro</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a Mad Men Season Five Finale Watch Party, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. $10 general admission, $20 admission and two hour open bar.</p>'
-                                                        },
-                                                        'geometry': {
-                                                            'type': 'Point',
-                                                            'coordinates': [110.3625862, -7.8007155]
-                                                        }
-                                                    },
-                                                    {
-                                                        'type': 'Feature',
-                                                        'properties': {
-                                                            'description': '<strong>Taman Pintar</strong><p>Truckeroo brings dozens of food trucks, live music, and games to half and M Street SE (across from Navy Yard Metro Station) today from 11:00 a.m. to 11:00 p.m.</p>'
-                                                        },
-                                                        'geometry': {
-                                                            'type': 'Point',
-                                                            'coordinates': [110.3672428, -7.8010777]
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        });
-
-                                        // Add a layer showing the places.
-                                        map.addLayer({
-                                            'id': 'places',
-                                            'type': 'symbol',
-                                            'source': 'places',
-                                            'layout': {
-                                                'icon-image': 'custom-marker',
-                                                'icon-allow-overlap': true
-                                            }
-                                        });
-                                    }
-                                );
-
-                                // Create a popup, but don't add it to the map yet.
-                                var popup = new mapboxgl.Popup({
-                                    closeButton: false,
-                                    closeOnClick: false
-                                });
-
-                                map.on('mouseenter', 'places', function(e) {
-                                    // Change the cursor style as a UI indicator.
-                                    map.getCanvas().style.cursor = 'pointer';
-
-                                    var coordinates = e.features[0].geometry.coordinates.slice();
-                                    var description = e.features[0].properties.description;
-
-                                    // Ensure that if the map is zoomed out such that multiple
-                                    // copies of the feature are visible, the popup appears
-                                    // over the copy being pointed to.
-                                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                                    }
-
-                                    // Populate the popup and set its coordinates
-                                    // based on the feature found.
-                                    popup.setLngLat(coordinates).setHTML(description).addTo(map);
-                                });
-
-                                map.on('mouseleave', 'places', function() {
-                                    map.getCanvas().style.cursor = '';
-                                    popup.remove();
-                                });
-                            });
-                            </script>
+                                </script>
                         </div>
                     </div>
                     <!-- /.Mapbox -->
