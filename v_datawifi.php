@@ -21,8 +21,6 @@ include('./_partials/head.php');
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <!-- <h1 class="h3 mb-0 text-gray-800">&nbsp;Dashboard</h1> -->
                     </div>
-
-                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Data WiFi</h3>
                             <div class="card-tools">
@@ -169,7 +167,7 @@ include('./_partials/head.php');
                             </table>
                         </div>
                         <!-- /.card-body -->
-                    </div>
+                    
                 </div>
                 <!-- /.container-fluid -->
 
