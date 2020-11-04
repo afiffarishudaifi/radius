@@ -51,6 +51,7 @@ include('./_partials/head.php');
                                         <th>No HP</th>
                                         <th>Longitude</th>
                                         <th>Latitude</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,26 @@ include('./_partials/head.php');
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td>
+                                            <table border="0">
+                                                <tr>
+                                                    <td>
+                                                        <a href="v_editwifi.php">
+                                                            <button class="pilih btn btn-primary btn-sm">
+                                                                <center><i class="fa fa-edit">
+                                                                    </i></center>
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="">
+                                                            <button data-toggle="modal" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus <?php echo $data->nama_iklan; ?>?');"><i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -99,6 +120,7 @@ include('./_partials/head.php');
                                         <th>No HP</th>
                                         <th>Longitude</th>
                                         <th>Latitude</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
