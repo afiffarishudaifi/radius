@@ -8,14 +8,6 @@ if (!isset($session_id)) {
 setTimeout(function() {
     window.location.href = "./login"
 }, 0);
-
-// $(function() {
-//     toastr.error('Nama Pengguna atau Kata Sandi Salah!')
-// });
-// setTimeout(function() {
-//     window.location.href = "./login"
-// }, 0);
-// 
 </script>
 <?php
 }

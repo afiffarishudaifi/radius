@@ -24,150 +24,185 @@ include('./_partials/head.php');
                             <h3 class="card-title">Edit Data Wifi</h3>
                         </div>
                         <div class="card-body">
-                            <form class="user" action="" method="post">
+                            <form action="./controller/controller_data_wifi" method="post">
+                                <?php
+                                require_once "../../controller/koneksi.php";
+                                if(isset($_GET['id'])) {
+                                    $id = $_GET['id'];
+                                    //query untuk menampilkan sebuah query select dari table tb_siswa dengan id siswa sebagai parameter
+                                    $sql = "SELECT * FROM data_wifi WHERE id='$id'";
+                                    $querykec = mysqli_query($koneksi, $sql);
+                                    while ($data = mysqli_fetch_array($querykec)) {?>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">id</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="<?php $data[''] ?>" name="id" size="4"
+                                            class="form-control" readonly required>
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kelurahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kelurahan" placeholder="Kelurahan" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="kelurahan"
+                                            placeholder="Kelurahan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">RW</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="rw" placeholder="RW" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="rw" placeholder="RW"
+                                            size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" name="alamat" placeholder="Alamat" size="4" class="form-control" required></textarea>
+                                        <textarea type="text" value="<?php $data[''] ?>" name="alamat"
+                                            placeholder="Alamat" size="4" class="form-control" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Lokasi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="lokasi" placeholder="Lokasi" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="lokasi" placeholder="Lokasi"
+                                            size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Progress</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="progress" placeholder="Progress" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="progress"
+                                            placeholder="Progress" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="status" placeholder="Status" size="4" class="form-control">
+                                        <input type="text" value="<?php $data[''] ?>" name="status" placeholder="Status"
+                                            size="4" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="keterangan" placeholder="Keterangan" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="keterangan"
+                                            placeholder="Keterangan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Platform</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="platform" placeholder="Platform" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="platform"
+                                            placeholder="Platform" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Catatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="catatan" placeholder="Catatan" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="catatan"
+                                            placeholder="Catatan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Tambahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="tambahan" placeholder="tambahan" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="tambahan"
+                                            placeholder="tambahan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Olt</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="olt" placeholder="Olt" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="olt" placeholder="Olt"
+                                            size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Username PPOE</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="username_ppoe" placeholder="Username PPOE" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="username_ppoe"
+                                            placeholder="Username PPOE" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Password PPOE</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="password_ppoe" placeholder="Password PPOE" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="password_ppoe"
+                                            placeholder="Password PPOE" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">IP Modem</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="ip_modem" placeholder="IP Modem" size="4" class="form-control">
+                                        <input type="text" value="<?php $data[''] ?>" name="ip_modem"
+                                            placeholder="IP Modem" size="4" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">IP Router</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="ip_router" placeholder="IP Router" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="ip_router"
+                                            placeholder="IP Router" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">PIC</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="pic" placeholder="PIC" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="pic" placeholder="PIC"
+                                            size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">No HP</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="no_hp" placeholder="No Handphone" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="no_hp"
+                                            placeholder="No Handphone" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Longitude</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="longitude" placeholder="Longitude" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="longitude"
+                                            placeholder="Longitude" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Latitude</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="latitude" placeholder="Latitude" size="4" class="form-control" required>
+                                        <input type="text" value="<?php $data[''] ?>" name="latitude"
+                                            placeholder="Latitude" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">&nbsp;</label>
                                     <div class="col-sm-10">
-                                        <input type="submit" name="daftar" class="btn btn-primary" value="SIMPAN">
+                                        <input type="submit" name="ubah" class="btn btn-primary" value="Simpan">
                                         <a class="btn btn-danger" onclick="goBack()">
                                             <font color="white">Kembali</font>
                                         </a>
                                     </div>
                                 </div>
+                                <?php } ?>
                             </form>
                         </div>
                     </div>
