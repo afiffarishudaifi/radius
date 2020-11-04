@@ -1,3 +1,25 @@
+<?php
+require_once "./controller/koneksi.php";
+include "./controller/session.php";
+if (!isset($session_id)) {
+?>
+<script language="JavaScript">
+// alert('Anda Belum Login !');
+setTimeout(function() {
+    window.location.href = "./login"
+}, 0);
+
+// $(function() {
+//     toastr.error('Nama Pengguna atau Kata Sandi Salah!')
+// });
+// setTimeout(function() {
+//     window.location.href = "./login"
+// }, 0);
+// 
+</script>
+<?php
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,11 +55,20 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script src="./assets/chartjs/Chart.min.js"></script>
     <script src="./assets/chartjs/utils.js"></script>
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="./assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="./assets/plugins/toastr/toastr.min.css">
+
+    <!-- Mapbox -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+
     <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
     </style>
 </head>

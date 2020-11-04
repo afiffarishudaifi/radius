@@ -4,7 +4,7 @@
 <script src="./assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-    $.widget.bridge('uibutton', $.ui.button)
+$.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="./assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -32,6 +32,12 @@
 <script src="./assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="./assets/dist/js/demo.js"></script>
+
+
+<!-- SweetAlert2 -->
+<script src="./assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="./assets/plugins/toastr/toastr.min.js"></script>
 
 <!-- DataTables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>

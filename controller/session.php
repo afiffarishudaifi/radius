@@ -3,7 +3,7 @@ error_reporting(0);
 include('/koneksi.php');
 session_start(); // Memulai Session
 // Menyimpan Session
-$check_username = $_SESSION['USERNAME'];
+$check_username = $_SESSION['username'];
 
 // Ambil nama karyawan berdasarkan username karyawan dengan mysql_fetch_assoc
 $sql = "SELECT * from operators where USERNAME='$check_username'";
