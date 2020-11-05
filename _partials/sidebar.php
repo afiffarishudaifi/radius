@@ -23,7 +23,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="index.php" class="nav-link">
+                    <a href="index" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -32,7 +32,7 @@
                 </li>
 
                 <li class="nav-item has-treeview">
-                    <a href="bill-main.php" class="nav-link">
+                    <a href="bill-main" class="nav-link">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Management
@@ -42,7 +42,7 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="mng-users.php" class="nav-link">
+                            <a href="mng-users" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Users
@@ -51,7 +51,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="online-user.php" class="nav-link">
+                                    <a href="online-user" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Online Users</p>
                                     </a>
@@ -138,7 +138,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="v_datawifi.php" class="nav-link">
+                    <a href="v_datawifi" class="nav-link">
                         <i class="nav-icon fas fa-server"></i>
                         <p>
                             Data Wifi
