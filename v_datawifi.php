@@ -21,6 +21,7 @@ include('./_partials/head.php');
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <!-- <h1 class="h3 mb-0 text-gray-800">&nbsp;Dashboard</h1> -->
                     </div>
+                    <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Data WiFi</h3>
                             <div class="card-tools">
@@ -50,8 +51,8 @@ include('./_partials/head.php');
                                         <th>Olt</th>
                                         <th>Username_ppoe</th>
                                         <th>Password_ppoe</th>
-                                        <th>IP Modem</th>
-                                        <th>IP Router</th>
+                                        <th>IP</th>
+                                        <!-- <th>IP Router</th> -->
                                         <th>PIC</th>
                                         <th>No HP</th>
                                         <th>Longitude</th>
@@ -84,8 +85,8 @@ include('./_partials/head.php');
                                             <td><?php echo $data['olt']; ?></td>
                                             <td><?php echo $data['username_ppoe']; ?></td>
                                             <td><?php echo $data['password_ppoe']; ?></td>
-                                            <td><?php echo $data['ip_modem']; ?></td>
-                                            <td><?php echo $data['ip_router']; ?></td>
+                                            <td><?php echo $data['ip']; ?></td>
+                                            <!-- <td><?php echo $data['ip_router']; ?></td> -->
                                             <td><?php echo $data['pic']; ?></td>
                                             <td><?php echo $data['no_hp']; ?></td>
                                             <td><?php echo $data['longitude']; ?></td>
@@ -156,7 +157,7 @@ include('./_partials/head.php');
                                         <th>Username_ppoe</th>
                                         <th>Password_ppoe</th>
                                         <th>IP Modem</th>
-                                        <th>IP Router</th>
+                                        <!-- <th>IP Router</th> -->
                                         <th>PIC</th>
                                         <th>No HP</th>
                                         <th>Longitude</th>
@@ -167,7 +168,7 @@ include('./_partials/head.php');
                             </table>
                         </div>
                         <!-- /.card-body -->
-                    
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
