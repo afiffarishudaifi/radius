@@ -19,9 +19,9 @@ include('./_partials/head.php');
             <section class="content">
                 <!-- container-fluid -->
                 <div class="container-fluid">
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Input Data Wifi</h3>
+                            <div class="card-title"><strong><h4>Input Data Wifi</h4></strong></div>
                         </div>
                         <div class="card-body">
                             <form action="./controller/controller_data_wifi" method="post">
@@ -29,14 +29,14 @@ include('./_partials/head.php');
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Kelurahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="kelurahan" placeholder="Kelurahan" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="kelurahan" placeholder="Kelurahan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">RW</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="rw" placeholder="RW" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="rw" placeholder="RW" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -50,28 +50,28 @@ include('./_partials/head.php');
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Lokasi</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="lokasi" placeholder="Lokasi" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="lokasi" placeholder="Lokasi" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Progress</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="progress" placeholder="Progress" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="progress" placeholder="Progress" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="status" placeholder="Status" size="4" class="form-control">
+                                        <input autocomplete="off" type="text" name="status" placeholder="Status" size="4" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="keterangan" placeholder="Keterangan" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="keterangan" placeholder="Keterangan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -90,77 +90,77 @@ include('./_partials/head.php');
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Catatan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="catatan" placeholder="Catatan" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="catatan" placeholder="Catatan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Tambahan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="tambahan" placeholder="tambahan" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="tambahan" placeholder="tambahan" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Olt</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="olt" placeholder="Olt" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="olt" placeholder="Olt" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Username PPOE</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="username_ppoe" placeholder="Username PPOE" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="username_ppoe" placeholder="Username PPOE" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Password PPOE</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="password_ppoe" placeholder="Password PPOE" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="password_ppoe" placeholder="Password PPOE" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">IP Modem</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="ip_modem" placeholder="IP Modem" size="4" class="form-control">
+                                        <input autocomplete="off" type="text" name="ip_modem" placeholder="IP Modem" size="4" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">IP Router</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="ip_router" placeholder="IP Router" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="ip_router" placeholder="IP Router" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">PIC</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="pic" placeholder="PIC" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="pic" placeholder="PIC" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">No HP</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="no_hp" placeholder="No Handphone" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="no_hp" placeholder="No Handphone" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Longitude</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="longitude" placeholder="Longitude" size="4" class="form-control" required>
+                                        <input autocomplete="off" type="text" name="longitude" placeholder="Longitude" size="4" class="form-control" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Latitude</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="latitude" placeholder="Latitude" size="4" class="form-control" required>
+                                        <input autocomplete="off"  type="text" name="latitude" placeholder="Latitude" size="4" class="form-control" required>
                                     </div>
                                 </div>
 

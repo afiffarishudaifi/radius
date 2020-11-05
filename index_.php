@@ -55,7 +55,7 @@
                                 <div class="inner">
                                     <?php
                                     include('./controller/koneksi.php');
-                                    $sql_online = "SELECT COUNT(*) FROM radacct WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND (radacct.Username LIKE '%jss%')";
+                                    $sql_online = "SELECT COUNT(*) FROM radacct WHERE acctstoptime = '0000-00-00 00:00:00' OR acctstoptime = NULL";
                                     $query_total_online = mysqli_query($koneksi, $sql_online);
                                     $total_online = mysqli_fetch_row($query_total_online);
                                     mysqli_close($koneksi);
@@ -248,94 +248,20 @@
                     <div class="row">
                         <div class="card col-12">                            
                             <div id='map' style='height: 600px;'></div>
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                            <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
-
-                            <script>
-                                mapboxgl.accessToken = 'pk.eyJ1IjoiZmFyaXNhaXp5IiwiYSI6ImNrY2p5NnRiajAwZW8zMGxicW5pMjdtY3cifQ.bQE6eet7DfhE4NKdlpceNg';
-
-                                $(document).ready(function() {
-
-                                  var map2 = new mapboxgl.Map({
-                                        container: 'map2',
-                                        style: 'mapbox://styles/mapbox/streets-v11',
-                                        center: [110.369490, -7.795580],
-                                        zoom: 11.8
-                                    });
-
-                                    function getmenara() {
-                                        <?php 
-
-                                        include('./controller/koneksi.php');
-                                        $sql_map = "SELECT * FROM data_wifi";
-                                        $query_map = mysqli_query($koneksi, $sql_map);
-                                        while ($data = mysqli_fetch_array($query)) {
-
-                                        }
-
-                                         ?>
-                                        var result = <?php echo $datamenara ?>;
-                                        return result;
-                                    }
-
-                                    getmenara().features.forEach(function(marker) {
-                                        // create a DOM element for the marker
-
-
-                                        var el = document.createElement('div');
-                                        el.className = 'marker';
-                                        el.style.backgroundImage =
-                                            'url(https://sipermen.jogjakota.go.id/assets/img/' + marker.properties.iconSize + '.png';
-                                        el.style.width = '25px';
-                                        el.style.height = '25px';
-
-                                        new mapboxgl.Marker(el)
-                                            .setLngLat(marker.geometry.coordinates)
-                                            .setPopup(new mapboxgl.Popup({
-                                                    offset: 25
-                                                }) // add popups
-                                                .setHTML('<table class="table table-striped">' +
-                                                    '<tbody>' +
-                                                    '<tr>' +
-                                                    '<td>Site ID :</td>' +
-                                                    '<td>' + marker.properties.siteid + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Latitude :</td>' +
-                                                    '<td>' + marker.properties.lat + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Longitude :</td>' +
-                                                    '<td>' + marker.properties.lng + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Tinggi :</td>' +
-                                                    '<td>' + marker.properties.tinggi + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Pemilik :</td>' +
-                                                    '<td>' + marker.properties.pemilik + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Jenis :</td>' +
-                                                    '<td>' + marker.properties.jenis + '</td>' +
-                                                    '</tr>' +
-                                                    '<tr>' +
-                                                    '<td>Alamat :</td>' +
-                                                    '<td>' + marker.properties.alamat + '</td>' +
-                                                    '</tr>' +
-                                                    '</tbody>' +
-                                                    '</table>'))
-                                            .addTo(map2);
-
-
-                                        // add marker to map
-
-
-                                    });
-
-                                });
-                            </script>
+                            <style>
+                            #marker {
+                                background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+                                background-size: cover;
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                            }
+                             
+                            .mapboxgl-popup {
+                                max-width: 200px;
+                            }
+                            </style>
 
                             <script>
                             mapboxgl.accessToken = 'pk.eyJ1IjoiYWZpZmZhcmlzIiwiYSI6ImNraDBtYWhxbTBnc2IycXNpYmowMXZ6YmQifQ.SuwwVsZ9ONc2mnEoJ0mvrw';
@@ -344,7 +270,7 @@
                             container: 'map',
                             style: 'mapbox://styles/mapbox/light-v10',
                             center: monument,
-                            zoom: 11.8
+                            zoom: 15
                             });
                              
                             // create the popup
