@@ -288,7 +288,7 @@
                               features: [
                             <?php 
                                 include('./controller/koneksi.php');
-                                $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, IF((SELECT COUNT(*) FROM radacct WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00'))!=0,COUNT(*),0) as 'total' FROM radacct INNER JOIN data_wifi ON radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY data_wifi.alamat";
+                                $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, data_wifi.alamat FROM `data_wifi` INNER JOIN radacct on radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY alamat";
                                 $query_map = mysqli_query($koneksi, $sql_map);
                                 $row = 0;
                                 while ($data_map = mysqli_fetch_array($query_map)) {
@@ -298,6 +298,13 @@
                                     } else {
                                         $koma = ',';
                                     }
+
+                                $sql_count = "SELECT COUNT(*) FROM radacct INNER JOIN data_wifi ON data_wifi.ip=radacct.framedipaddress WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND alamat = '$data_map[5]' GROUP BY alamat";
+                                $query_count = mysqli_query($koneksi, $sql_count);
+                                $total_count = mysqli_fetch_row($query_count);
+                                if($total_count == NULL OR $total_count == '') {
+                                    $total_count[0] = 0;
+                                }
                                 ?>
                               <?php echo $koma; ?>{
                                 type: 'Feature',
@@ -330,7 +337,7 @@
                                 '</tr>' +
                                 '<tr>' +
                                 '<td>Total :</td>' +
-                                '<td>' + '<?php echo $data_map[5] ?>' + '</td>' +
+                                '<td>' + '<?php echo $total_count[0]; ?>' + '</td>' +
                                 '</tr>' +
                                 '</tbody>' +
                                 '</table>'
