@@ -71,6 +71,28 @@
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
+                        <div class="col-lg-3 col-6">
+
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <?php
+                                    include('./controller/koneksi.php');
+                                    $sql_online = "SELECT COUNT(*) FROM radacct WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND (radacct.Username LIKE '%jss%')";
+                                    $query_total_online = mysqli_query($koneksi, $sql_online);
+                                    $total_online = mysqli_fetch_row($query_total_online);
+                                    mysqli_close($koneksi);
+                                    ?>
+                                    <h3><?php echo $total_online[0]; ?></h3>
+
+                                    <p>Online Users</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person"></i>
+                                </div>
+                                <a href="online-user.php" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
 
                     </div>
                     <!-- /.row -->
@@ -249,12 +271,6 @@
                         <div class="card col-12">
 
                                   <style>
-                                    #map {
-                                    position: absolute;
-                                    top: 0;
-                                    bottom: 0;
-                                    width: 100%;
-                                  }
 
                                   .marker {
                                   background-image: url('./assets/img/mapbox-icon.png');
@@ -266,7 +282,7 @@
                                 }
 
                                 .mapboxgl-popup {
-                                  min-width: 400px;
+                                  max-width: 200px;
                                 }
 
                                 .mapboxgl-popup-content {
@@ -294,7 +310,7 @@
                               features: [
                             <?php 
                                 include('./controller/koneksi.php');
-                                $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, data_wifi.alamat FROM `data_wifi` INNER JOIN radacct on radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY kelurahan";
+                                $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, data_wifi.alamat FROM `data_wifi` INNER JOIN radacct on radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY alamat";
                                 $query_map = mysqli_query($koneksi, $sql_map);
                                 $row = 0;
                                 while ($data_map = mysqli_fetch_array($query_map)) {
