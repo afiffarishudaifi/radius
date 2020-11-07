@@ -4,9 +4,7 @@
 
     <!-- Mapbox -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
-        type="text/css" />
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
     <!-- Mapbox -->
 
     <div class="wrapper">
@@ -44,8 +42,7 @@
                                 <div class="icon">
                                     <i class="ion ion-man"></i>
                                 </div>
-                                <a href="" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -67,8 +64,7 @@
                                 <div class="icon">
                                     <i class="ion ion-person"></i>
                                 </div>
-                                <a href="online-user.php" class="small-box-footer">More info <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                <a href="online-user" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -228,7 +224,7 @@
                         ?>
 
                         <!-- LINE CHART -->
-                        <div class="card col-12">
+                        <div class="card col-6">
                             <div class="card-header">
                                 <center>
                                     <h4>Bandwidth(Gigabyte) </h4>
@@ -248,152 +244,151 @@
                     <div class="row">
                         <div class="card col-12">
 
-                                  <style>
-                                    #map {
+                            <style>
+                                #map {
                                     position: absolute;
                                     top: 0;
                                     bottom: 0;
                                     width: 100%;
-                                  }
+                                }
 
-                                  .marker {
-                                  background-image: url('./assets/img/mapbox-icon.png');
-                                  background-size: cover;
-                                  width: 50px;
-                                  height: 50px;
-                                  border-radius: 50%;
-                                  cursor: pointer;
+                                .marker {
+                                    background-image: url('./assets/img/mapbox-icon.png');
+                                    background-size: cover;
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                    cursor: pointer;
                                 }
 
                                 .mapboxgl-popup {
-                                  min-width: 400px;
+                                    min-width: 400px;
                                 }
 
                                 .mapboxgl-popup-content {
-                                  text-align: center;
-                                  font-family: 'Open Sans', sans-serif;
+                                    text-align: center;
+                                    font-family: 'Open Sans', sans-serif;
                                 }
-                                </style>                            
+                            </style>
                             <div id='map' style='height: 600px;'></div>
 
 
                             <script>
+                                mapboxgl.accessToken = 'pk.eyJ1IjoiYWZpZmZhcmlzIiwiYSI6ImNraDBtYWhxbTBnc2IycXNpYmowMXZ6YmQifQ.SuwwVsZ9ONc2mnEoJ0mvrw';
 
-                            mapboxgl.accessToken = 'pk.eyJ1IjoiYWZpZmZhcmlzIiwiYSI6ImNraDBtYWhxbTBnc2IycXNpYmowMXZ6YmQifQ.SuwwVsZ9ONc2mnEoJ0mvrw';
+                                var map = new mapboxgl.Map({
+                                    container: 'map',
+                                    style: 'mapbox://styles/mapbox/light-v10',
+                                    center: [110.3960012, -7.7860458],
+                                    zoom: 12
+                                });
 
-                            var map = new mapboxgl.Map({
-                              container: 'map',
-                              style: 'mapbox://styles/mapbox/light-v10',
-                              center: [110.3960012, -7.7860458],
-                              zoom: 12
-                            });
+                                // code from the next step will go here!
+                                var geojson = {
+                                    type: 'FeatureCollection',
+                                    features: [
+                                        <?php
+                                        include('./controller/koneksi.php');
+                                        $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, data_wifi.alamat FROM `data_wifi` INNER JOIN radacct on radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY kelurahan";
+                                        $query_map = mysqli_query($koneksi, $sql_map);
+                                        $row = 0;
+                                        while ($data_map = mysqli_fetch_array($query_map)) {
+                                            $row = $row + 1;
+                                            if ($row == 1) {
+                                                $koma = '';
+                                            } else {
+                                                $koma = ',';
+                                            }
 
-                            // code from the next step will go here!
-                            var geojson = {
-                              type: 'FeatureCollection',
-                              features: [
-                            <?php 
-                                include('./controller/koneksi.php');
-                                $sql_map = "SELECT data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.longitude, data_wifi.latitude, data_wifi.alamat FROM `data_wifi` INNER JOIN radacct on radacct.framedipaddress=data_wifi.ip WHERE (radacct.Username LIKE '%jss%') AND (data_wifi.longitude != NULL OR data_wifi.longitude != '') AND (data_wifi.latitude != NULL OR data_wifi.latitude != '') GROUP BY kelurahan";
-                                $query_map = mysqli_query($koneksi, $sql_map);
-                                $row = 0;
-                                while ($data_map = mysqli_fetch_array($query_map)) {
-                                    $row=$row+1;
-                                    if ($row == 1) {
-                                        $koma = '';    
-                                    } else {
-                                        $koma = ',';
-                                    }
+                                            $sql_count = "SELECT COUNT(*) FROM radacct INNER JOIN data_wifi ON data_wifi.ip=radacct.framedipaddress WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND alamat = '$data_map[5]' GROUP BY alamat";
+                                            $query_count = mysqli_query($koneksi, $sql_count);
+                                            $total_count = mysqli_fetch_row($query_count);
+                                            if ($total_count == NULL or $total_count == '') {
+                                                $total_count[0] = 0;
+                                            }
+                                        ?>
+                                            <?php echo $koma; ?> {
+                                                type: 'Feature',
+                                                geometry: {
+                                                    type: 'Point',
+                                                    coordinates: [<?php echo $data_map[4] ?>, <?php echo $data_map[3] ?>]
+                                                },
+                                                properties: {
+                                                    description: '<table class="table table-striped">' +
+                                                        '<tbody>' +
+                                                        '<tr>' +
+                                                        '<td>Kelurahan :</td>' +
+                                                        '<td>' + '<?php echo $data_map[0] ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                        '<td>RW :</td>' +
+                                                        '<td>' + '<?php echo $data_map[1] ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                        '<td>Alamat :</td>' +
+                                                        '<td>' + '<?php echo $data_map[2] ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                        '<td>Longitude :</td>' +
+                                                        '<td>' + '<?php echo $data_map[3] ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                        '<td>Latitude :</td>' +
+                                                        '<td>' + '<?php echo $data_map[4] ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '<tr>' +
+                                                        '<td>Total :</td>' +
+                                                        '<td>' + '<?php echo $total_count[0]; ?>' + '</td>' +
+                                                        '</tr>' +
+                                                        '</tbody>' +
+                                                        '</table>'
+                                                }
+                                            }
+                                        <?php } ?>
+                                    ]
+                                };
 
-                                $sql_count = "SELECT COUNT(*) FROM radacct INNER JOIN data_wifi ON data_wifi.ip=radacct.framedipaddress WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND alamat = '$data_map[5]' GROUP BY alamat";
-                                $query_count = mysqli_query($koneksi, $sql_count);
-                                $total_count = mysqli_fetch_row($query_count);
-                                if($total_count == NULL OR $total_count == '') {
-                                    $total_count[0] = 0;
-                                }
-                                ?>
-                              <?php echo $koma; ?>{
-                                type: 'Feature',
-                                geometry: {
-                                  type: 'Point',
-                                  coordinates: [<?php echo $data_map[4] ?>,<?php echo $data_map[3] ?>]
-                                },
-                                properties: {
-                                  description: '<table class="table table-striped">' +
-                                '<tbody>' +
-                                '<tr>' +
-                                '<td>Kelurahan :</td>' +
-                                '<td>' + '<?php echo $data_map[0] ?>' + '</td>' +
-                                '</tr>' +
-                                '<tr>' +
-                                '<td>RW :</td>' +
-                                '<td>' + '<?php echo $data_map[1] ?>' + '</td>' +
-                                '</tr>' +
-                                '<tr>' +
-                                '<td>Alamat :</td>' +
-                                '<td>' + '<?php echo $data_map[2] ?>' + '</td>' +
-                                '</tr>' +
-                                '<tr>' +
-                                '<td>Longitude :</td>' +
-                                '<td>' + '<?php echo $data_map[3] ?>' + '</td>' +
-                                '</tr>' +
-                                '<tr>' +
-                                '<td>Latitude :</td>' +
-                                '<td>' + '<?php echo $data_map[4] ?>' + '</td>' +
-                                '</tr>' +
-                                '<tr>' +
-                                '<td>Total :</td>' +
-                                '<td>' + '<?php echo $total_count[0]; ?>' + '</td>' +
-                                '</tr>' +
-                                '</tbody>' +
-                                '</table>'
-                                }
-                              }
-                          <?php } ?>
-                              ]
-                            };
+                                // add markers to map
+                                geojson.features.forEach(function(marker) {
 
-                            // add markers to map
-                            geojson.features.forEach(function(marker) {
+                                    // create a HTML element for each feature
+                                    var el = document.createElement('div');
+                                    el.className = 'marker';
 
-                              // create a HTML element for each feature
-                              var el = document.createElement('div');
-                              el.className = 'marker';
+                                    // make a marker for each feature and add to the map
+                                    new mapboxgl.Marker(el)
+                                        .setLngLat(marker.geometry.coordinates)
+                                        .addTo(map);
 
-                              // make a marker for each feature and add to the map
-                              new mapboxgl.Marker(el)
-                                .setLngLat(marker.geometry.coordinates)
-                                .addTo(map);
+                                    new mapboxgl.Marker(el)
+                                        .setLngLat(marker.geometry.coordinates)
+                                        .setPopup(new mapboxgl.Popup({
+                                                offset: 25
+                                            }) // add popups
+                                            .setHTML('<p>' + marker.properties.description + '</p>'))
+                                        .addTo(map);
+                                });
+                                // Add pencarian geocoder
+                                map.addControl(
+                                    new MapboxGeocoder({
+                                        accessToken: mapboxgl.accessToken,
+                                        // marker pencarian
+                                        mapboxgl: mapboxgl
+                                    })
+                                );
 
-                                new mapboxgl.Marker(el)
-                              .setLngLat(marker.geometry.coordinates)
-                              .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                                .setHTML('<p>' + marker.properties.description + '</p>'))
-                              .addTo(map);
-                            });
-                            // Add pencarian geocoder
-                            map.addControl(
-                                new MapboxGeocoder({
-                                    accessToken: mapboxgl.accessToken,
-                                    // marker pencarian
-                                    mapboxgl: mapboxgl
-                                })
-                            );
+                                // Add zoom and rotation controls to the map.
+                                map.addControl(new mapboxgl.NavigationControl());
 
-                            // Add zoom and rotation controls to the map.
-                            map.addControl(new mapboxgl.NavigationControl());
-
-                            // Add geolocate control to the map.
-                            map.addControl(
-                                new mapboxgl.GeolocateControl({
-                                    positionOptions: {
-                                        enableHighAccuracy: true
-                                    },
-                                    trackUserLocation: true
-                                })
-                            );
-
-
+                                // Add geolocate control to the map.
+                                map.addControl(
+                                    new mapboxgl.GeolocateControl({
+                                        positionOptions: {
+                                            enableHighAccuracy: true
+                                        },
+                                        trackUserLocation: true
+                                    })
+                                );
                             </script>
                         </div>
                     </div>
@@ -423,56 +418,54 @@
 
 
 <script>
-var lineChartData = {
-    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
-        'November', 'Desember'
-    ],
-    datasets: [{
-        label: 'Download(Gb)',
-        borderColor: window.chartColors.red,
-        backgroundColor: window.chartColors.red,
-        fill: false,
-        data: [<?php echo $down1; ?> , <?php echo $down2; ?>, <?php echo $down3; ?> , <?php echo $down4; ?> , <?php echo $down5; ?> , <?php echo $down6; ?> , <?php echo $down7; ?> , <?php echo $down8; ?> , <?php echo $down9; ?> , <?php echo $down10; ?> , <?php echo $down11; ?> , <?php echo $down12; ?>
+    var lineChartData = {
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
+            'November', 'Desember'
         ],
-        yAxisID: 'y-axis-1',
-    }, {
-        label: 'Upload(Gb)',
-        borderColor: window.chartColors.blue,
-        backgroundColor: window.chartColors.blue,
-        fill: false,
-        data: [<?php echo $up1; ?> , <?php echo $up2; ?> , <?php echo $up3; ?> , <?php echo $up4; ?> , <?php echo $up5; ?> , <?php echo $up6; ?> , <?php echo $up7; ?> , <?php echo $up8; ?> , <?php echo $up9; ?> , <?php echo $up10; ?> , <?php echo $up11; ?> , <?php echo $up12; ?>
-        ],
-        yAxisID: 'y-axis-1'
-    }]
-};
+        datasets: [{
+            label: 'Download(Gb)',
+            borderColor: window.chartColors.red,
+            backgroundColor: window.chartColors.red,
+            fill: false,
+            data: [<?php echo $down1; ?>, <?php echo $down2; ?>, <?php echo $down3; ?>, <?php echo $down4; ?>, <?php echo $down5; ?>, <?php echo $down6; ?>, <?php echo $down7; ?>, <?php echo $down8; ?>, <?php echo $down9; ?>, <?php echo $down10; ?>, <?php echo $down11; ?>, <?php echo $down12; ?>],
+            yAxisID: 'y-axis-1',
+        }, {
+            label: 'Upload(Gb)',
+            borderColor: window.chartColors.blue,
+            backgroundColor: window.chartColors.blue,
+            fill: false,
+            data: [<?php echo $up1; ?>, <?php echo $up2; ?>, <?php echo $up3; ?>, <?php echo $up4; ?>, <?php echo $up5; ?>, <?php echo $up6; ?>, <?php echo $up7; ?>, <?php echo $up8; ?>, <?php echo $up9; ?>, <?php echo $up10; ?>, <?php echo $up11; ?>, <?php echo $up12; ?>],
+            yAxisID: 'y-axis-1'
+        }]
+    };
 
-window.onload = function() {
-    var ctx = document.getElementById('canvas').getContext('2d');
-    window.myLine = Chart.Line(ctx, {
-        data: lineChartData,
-        options: {
-            responsive: true,
-            hoverMode: 'index',
-            stacked: true,
-            scales: {
-                yAxes: [{
-                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: true,
-                    position: 'left',
-                    id: 'y-axis-1',
-                }, {
-                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                    display: false,
-                    position: 'right',
-                    id: 'y-axis-2',
+    window.onload = function() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = Chart.Line(ctx, {
+            data: lineChartData,
+            options: {
+                responsive: true,
+                hoverMode: 'index',
+                stacked: true,
+                scales: {
+                    yAxes: [{
+                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                    }, {
+                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: false,
+                        position: 'right',
+                        id: 'y-axis-2',
 
-                    // grid line settings
-                    gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
-                    },
-                }],
+                        // grid line settings
+                        gridLines: {
+                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        },
+                    }],
+                }
             }
-        }
-    });
-};
+        });
+    };
 </script>

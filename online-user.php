@@ -33,49 +33,86 @@ include('./_partials/head.php');
                                 <thead>
                                     <tr>
                                         <th>Username</th>
-                                        <th>Name</th>
-                                        <th>Ip Address</th>
+                                        <th>IP Address</th>
                                         <th>Start Time</th>
                                         <th>Total Time</th>
-                                        <th>Hotspot / NAS Shortname</th>
-                                        <th>Total Traffic</th>
+                                        <th>Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     include('./controller/koneksi.php');
                                     $query = mysqli_query($koneksi, "SELECT radacct.username, radacct.FramedIPAddress,
-                                                radacct.CallingStationId, radacct.AcctStartTime,
-                                                radacct.AcctSessionTime, radacct.NASIPAddress, 
-                                                radacct.CalledStationId, radacct.AcctSessionId, 
-                                                radacct.acctinputoctets AS Upload,
-                                                radacct.acctoutputoctets AS Download,
-                                                hotspots.name AS hotspot, 
-                                                nas.shortname AS NASshortname, 
-                                                userinfo.Firstname AS Firstname, 
-                                                userinfo.Lastname AS Lastname FROM radacct LEFT JOIN hotspots ON (mac = CalledStationId) LEFT JOIN nas ON (nasname = NASIPAddress) LEFT JOIN userinfo ON (radacct.username = userinfo.username) WHERE (AcctStopTime IS NULL OR AcctStopTime = '0000-00-00 00:00:00')");
+                                    radacct.AcctStartTime, radacct.AcctSessionTime,
+                                    radacct.acctinputoctets AS Upload,
+                                    radacct.acctoutputoctets AS Download,
+                                    data_wifi.kelurahan, data_wifi.rw, data_wifi.alamat, data_wifi.ip
+                                    FROM radacct LEFT JOIN data_wifi ON radacct.framedipaddress=data_wifi.ip 
+                                    WHERE (AcctStopTime IS NULL OR AcctStopTime = '0000-00-00 00:00:00')
+                                    GROUP BY data_wifi.kelurahan");
                                     while ($data = mysqli_fetch_array($query)) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $data['Username']; ?></td>
-                                            <td><?php echo $data['Firstname']; ?> <?php echo $data['Lastname']; ?></td>
-                                            <td><?php echo $data['FramedIPAddress']; ?><?php echo $data['CallingStationId']; ?></td>
+                                            <?php
+                                            $id = $data['username'];
+                                            ?>
+                                            <td><?php echo $id; ?></td>
+                                            <td><?php echo $data['FramedIPAddress']; ?></td>
                                             <td><?php echo $data['AcctStartTime']; ?></td>
                                             <td><?php echo $data['AcctSessionTime']; ?></td>
-                                            <td><?php echo $data['hotspot']; ?> <?php echo $data['NASshortname']; ?></td>
-                                            <td><?php echo $data['Upload']; ?> <?php echo $data['Download']; ?></td>
+                                            <td>
+                                                <center>
+                                                    <a data-toggle="modal" data-target="#<?php echo $id; ?>" class="btn btn-circle btn-primary"><i class="fas fa-info-circle"></i></a>
+                                                </center>
+
+                                                <!-- modal detail -->
+                                                <div class="modal fade" id="<?php echo $id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    Detail <?php echo $id; ?> </h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label>Kelurahan</label>
+                                                                    <input type="text" class="form-control" name="kelurahan" value="<?php echo $data['kelurahan']; ?>" readonly>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>RW</label>
+                                                                    <input type="text" class="form-control" name="rw" value="<?php echo $data['rw']; ?>" readonly>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label>Alamat</label>
+                                                                    <input type="text" class="form-control" name="alamat" value="<?php echo $data['alamat']; ?>" readonly>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Upload/Download</label>
+                                                                    <input type="text" class="form-control" name="up" value="<?php echo $data['Upload']; ?>/<?php echo $data['Download']; ?>" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end modal -->
+                                            </td>
+
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Username</th>
-                                        <th>Name</th>
-                                        <th>Ip Address</th>
+                                        <th>IP Address</th>
                                         <th>Start Time</th>
                                         <th>Total Time</th>
-                                        <th>Hotspot / NAS Shortname</th>
-                                        <th>Total Traffic</th>
+                                        <th>Details</th>
                                     </tr>
                                 </tfoot>
                             </table>
