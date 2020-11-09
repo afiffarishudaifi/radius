@@ -31,7 +31,7 @@ include('./_partials/head.php');
                         <div class="card-body">
                             <?php
                             require_once "./controller/koneksi.php";
-                            $sql_rata = "SELECT AVG(radacct.acctoutputoctets)/ DATEDIFF(DATE(now()), DATE(acctstoptime)) FROM `radacct`";
+                            $sql_rata = "SELECT AVG(radacct.acctoutputoctets) FROM `radacct`";
                             $query_rata = mysqli_query($koneksi, $sql_rata);
                             $total_rata = mysqli_fetch_row($query_rata);
                             $rata = $total_rata[0];
@@ -48,6 +48,7 @@ include('./_partials/head.php');
                                                                 echo $r . " Kb/Hari";
                                                             }
                                                             ?></h5>
+                                                            <br>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
