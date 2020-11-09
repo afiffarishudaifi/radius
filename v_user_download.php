@@ -34,9 +34,20 @@ include('./_partials/head.php');
                             $sql_rata = "SELECT AVG(radacct.acctoutputoctets)/ DATEDIFF(DATE(now()), DATE(acctstoptime)) FROM `radacct`";
                             $query_rata = mysqli_query($koneksi, $sql_rata);
                             $total_rata = mysqli_fetch_row($query_rata);
-                            $rata = substr($total_rata[0] / 1073741824, 0, 9);
-                             ?>
-                            <h5>Total Rata Rata Penggunaan <?php echo $rata; ?> Gb/Hari</h5>
+                            $rata = $total_rata[0];
+                            //$rata = substr($total_rata[0] / 1073741824, 0, 9);
+                            ?>
+                            <h5>Total Rata Rata Penggunaan <?php if ($rata >= 1073741824) {
+                                                                $r = substr($rata / 1073741824, 0, 6);
+                                                                echo $r . " Gb/Hari";
+                                                            } else if ($rata >= 1048576) {
+                                                                $r = substr($rata / 1048576, 0, 6);
+                                                                echo $r . " Mb/Hari";
+                                                            } else {
+                                                                $r = substr($rata / 1024, 0, 6);
+                                                                echo $r . " Kb/Hari";
+                                                            }
+                                                            ?></h5>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -51,17 +62,27 @@ include('./_partials/head.php');
                                     //echo $query;
                                     $row = 0;
                                     while ($data = mysqli_fetch_array($query)) {  //merubah array dari objek ke array yang biasanya
-                                        if ($data[1] == NULL OR $data[1] == '') {
+                                        if ($data[1] == NULL or $data[1] == '') {
                                             $data[1] = 0;
-                                        } else {
-                                            $data[1] = substr($data[1] / 1073741824, 0, 9);
                                         }
+                                        // else {
+                                        //     $data[1] = substr($data[1] / 1073741824, 0, 9);
+                                        // }
                                         $row = $row + 1;
                                     ?>
                                         <tr>
                                             <td><?php echo $row; ?></td>
                                             <td><?php echo $data[0]; ?></td>
-                                            <td><?php echo $data[1]; ?> Gb </td>
+                                            <td><?php if ($data[1] >= 1073741824) {
+                                                    $d = substr($data[1] / 1073741824, 0, 6);
+                                                    echo $d . " Gb";
+                                                } else if ($data[1] >= 1048576) {
+                                                    $d = substr($data[1] / 1048576, 0, 6);
+                                                    echo $d . " Mb";
+                                                } else {
+                                                    $d = substr($data[1] / 1024, 0, 6);
+                                                    echo $d . " Kb";
+                                                } ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
