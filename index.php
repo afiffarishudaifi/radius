@@ -238,6 +238,98 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
+
+                        <!-- Grafik Login Bulanan -->
+
+                        <?php
+                        include('./controller/koneksi.php');
+                        date_default_timezone_set('Asia/Jakarta');
+                        $tahun = date("Y");
+
+                        $querylog1 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 1 and year(acctstoptime) = $tahun";
+                        $sqllog1 = mysqli_query($koneksi, $querylog1);
+                        $datalog1 = mysqli_fetch_row($sqllog1);
+                        $hasil1 = implode($datalog1);
+                        
+
+                        $querylog2 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 2 and year(acctstoptime) = $tahun";
+                        $sqllog2 = mysqli_query($koneksi, $querylog2);
+                        $datalog2 = mysqli_fetch_row($sqllog2);
+                        $hasil2 = implode($datalog2);
+                       
+
+                        $querylog3 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 3 and year(acctstoptime) = $tahun";
+                        $sqllog3 = mysqli_query($koneksi, $querylog3);
+                        $datalog3 = mysqli_fetch_row($sqllog3);
+                        $hasil3 = implode($datalog3);
+
+                        $querylog4 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 4 and year(acctstoptime) = $tahun";
+                        $sqllog4 = mysqli_query($koneksi, $querylog4);
+                        $datalog4 = mysqli_fetch_row($sqllog4);
+                        $hasil4 = implode($datalog4);
+
+                        $querylog5 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 5 and year(acctstoptime) = $tahun";
+                        $sqllog5 = mysqli_query($koneksi, $querylog5);
+                        $datalog5 = mysqli_fetch_row($sqllog5);
+                        $hasil5 = implode($datalog5);
+                        
+
+                        $querylog6 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 6 and year(acctstoptime) = $tahun";
+                        $sqllog6 = mysqli_query($koneksi, $querylog6);
+                        $datalog6 = mysqli_fetch_row($sqllog6);
+                        $hasil6 = implode($datalog6);
+                       
+
+                        $querylog7 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 7 and year(acctstoptime) = $tahun";
+                        $sqllog7 = mysqli_query($koneksi, $querylog7);
+                        $datalog7 = mysqli_fetch_row($sqllog7);
+                        $hasil7 = implode($datalog7);
+                        
+
+                        $querylog8 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 8 and year(acctstoptime) = $tahun";
+                        $sqllog8 = mysqli_query($koneksi, $querylog8);
+                        $datalog8 = mysqli_fetch_row($sqllog8);
+                        $hasil8 = implode($datalog8);
+
+                        $querylog9 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 9 and year(acctstoptime) = $tahun";
+                        $sqllog9 = mysqli_query($koneksi, $querylog9);
+                        $datalog9 = mysqli_fetch_row($sqllog9);
+                        $hasil9 = implode($datalog9);
+
+                        $querylog10 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 10 and year(acctstoptime) = $tahun";
+                        $sqllog10 = mysqli_query($koneksi, $querylog10);
+                        $datalog10 = mysqli_fetch_row($sqllog10);
+                        $hasil10 = implode($datalog10);
+                        
+                        $querylog11 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 11 and year(acctstoptime) = $tahun";
+                        $sqllog11 = mysqli_query($koneksi, $querylog11);
+                        $datalog11 = mysqli_fetch_row($sqllog11);
+                        $hasil11 = implode($datalog11);
+                        
+
+                        $querylog12 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 12 and year(acctstoptime) = $tahun";
+                        $sqllog12 = mysqli_query($koneksi, $querylog12);
+                        $datalog12 = mysqli_fetch_row($sqllog12);
+                        $hasil12 = implode($datalog12);
+                    
+                        ?>
+
+                     <!-- LINE CHART -->
+                        <div class="card col-6">
+                            <div class="card-header">
+                                <center>
+                                    <h4>Login Bulanan </h4>
+                                </center>
+                            </div>
+                            <div class="card-body">
+                                <div style="width:100%;">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
                     </div>
 
                     <!-- Mapbox -->
@@ -468,4 +560,42 @@
             }
         });
     };
+</script>
+<!-- Grafik Login Bulanan -->
+<script>
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
+        'November', 'Desember'],
+        datasets: [{
+            label: 'Jumlah',
+            data: [<?php echo $hasil1; ?> , <?php echo $hasil2; ?>, <?php echo $hasil3; ?> , <?php echo $hasil4; ?> , <?php echo $hasil5; ?> , <?php echo $hasil6; ?> , <?php echo $hasil7; ?> , <?php echo $hasil8; ?> , <?php echo $hasil9; ?> , <?php echo $hasil10; ?> , <?php echo $hasil11; ?> , <?php echo $hasil12; ?>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+            responsive: true,
+            hoverMode: 'index',
+            stacked: true,
+        scales: {
+            yAxes: [{
+                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                     ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 </script>
