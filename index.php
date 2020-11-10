@@ -250,13 +250,13 @@
                         $sqllog1 = mysqli_query($koneksi, $querylog1);
                         $datalog1 = mysqli_fetch_row($sqllog1);
                         $hasil1 = implode($datalog1);
-                        
+
 
                         $querylog2 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 2 and year(acctstoptime) = $tahun";
                         $sqllog2 = mysqli_query($koneksi, $querylog2);
                         $datalog2 = mysqli_fetch_row($sqllog2);
                         $hasil2 = implode($datalog2);
-                       
+
 
                         $querylog3 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 3 and year(acctstoptime) = $tahun";
                         $sqllog3 = mysqli_query($koneksi, $querylog3);
@@ -272,19 +272,19 @@
                         $sqllog5 = mysqli_query($koneksi, $querylog5);
                         $datalog5 = mysqli_fetch_row($sqllog5);
                         $hasil5 = implode($datalog5);
-                        
+
 
                         $querylog6 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 6 and year(acctstoptime) = $tahun";
                         $sqllog6 = mysqli_query($koneksi, $querylog6);
                         $datalog6 = mysqli_fetch_row($sqllog6);
                         $hasil6 = implode($datalog6);
-                       
+
 
                         $querylog7 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 7 and year(acctstoptime) = $tahun";
                         $sqllog7 = mysqli_query($koneksi, $querylog7);
                         $datalog7 = mysqli_fetch_row($sqllog7);
                         $hasil7 = implode($datalog7);
-                        
+
 
                         $querylog8 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 8 and year(acctstoptime) = $tahun";
                         $sqllog8 = mysqli_query($koneksi, $querylog8);
@@ -300,21 +300,21 @@
                         $sqllog10 = mysqli_query($koneksi, $querylog10);
                         $datalog10 = mysqli_fetch_row($sqllog10);
                         $hasil10 = implode($datalog10);
-                        
+
                         $querylog11 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 11 and year(acctstoptime) = $tahun";
                         $sqllog11 = mysqli_query($koneksi, $querylog11);
                         $datalog11 = mysqli_fetch_row($sqllog11);
                         $hasil11 = implode($datalog11);
-                        
+
 
                         $querylog12 = "SELECT COUNT(*) as jumlah FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = 12 and year(acctstoptime) = $tahun";
                         $sqllog12 = mysqli_query($koneksi, $querylog12);
                         $datalog12 = mysqli_fetch_row($sqllog12);
                         $hasil12 = implode($datalog12);
-                    
+
                         ?>
 
-                     <!-- LINE CHART -->
+                        <!-- LINE CHART -->
                         <div class="card col-6">
                             <div class="card-header">
                                 <center>
@@ -331,14 +331,14 @@
                         <!-- /.card -->
 
 
-                       
+
 
                     </div>
 
                     <div class="row">
 
-                         <!-- Grafik Mingguna -->
-                         <?php
+                        <!-- Grafik Mingguna -->
+                        <?php
                         include('./controller/koneksi.php');
                         date_default_timezone_set('Asia/Jakarta');
                         $tahun = date("Y");
@@ -346,22 +346,22 @@
                         $query_total_minggu = mysqli_query($koneksi, $minggu_ini);
                         $total_minggu = mysqli_fetch_row($query_total_minggu);
                         $minggu = $total_minggu[0];
-                        if ($minggu %4 == 0) {
+                        if ($minggu % 4 == 0) {
                             $satu = $minggu;
                             $dua = $minggu + 1;
                             $tiga = $minggu + 2;
                             $empat = $minggu + 3;
-                        } elseif ($minggu %4 == 1) {
+                        } elseif ($minggu % 4 == 1) {
                             $satu = $minggu - 1;
                             $dua = $minggu;
                             $tiga = $minggu + 1;
                             $empat = $minggu + 2;
-                        } elseif ($minggu %4 == 2) {
+                        } elseif ($minggu % 4 == 2) {
                             $satu = $minggu - 2;
                             $dua = $minggu - 1;
-                            $tiga = $minggu ;
+                            $tiga = $minggu;
                             $empat = $minggu + 1;
-                        } elseif ($minggu %4 == 3) {
+                        } elseif ($minggu % 4 == 3) {
                             $satu = $minggu - 3;
                             $dua = $minggu - 2;
                             $tiga = $minggu - 1;
@@ -371,16 +371,16 @@
                         $querylog1 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $satu and year(acctstoptime) = $tahun";
                         $sqllog1 = mysqli_query($koneksi, $querylog1);
                         $datalog1 = mysqli_fetch_row($sqllog1);
-                        if(implode($datalog1) == NULL OR implode($datalog1) == '') {
+                        if (implode($datalog1) == NULL or implode($datalog1) == '') {
                             $hasil1 = 0;
                         } else {
                             $hasil1 = implode($datalog1);
                         }
-                        
+
                         $querylog2 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $dua and year(acctstoptime) = $tahun";
                         $sqllog2 = mysqli_query($koneksi, $querylog2);
                         $datalog2 = mysqli_fetch_row($sqllog2);
-                        if(implode($datalog2) == NULL OR implode($datalog2) == '') {
+                        if (implode($datalog2) == NULL or implode($datalog2) == '') {
                             $hasil2 = 0;
                         } else {
                             $hasil2 = implode($datalog2);
@@ -389,7 +389,7 @@
                         $querylog3 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $tiga and year(acctstoptime) = $tahun";
                         $sqllog3 = mysqli_query($koneksi, $querylog3);
                         $datalog3 = mysqli_fetch_row($sqllog3);
-                        if(implode($datalog3) == NULL OR implode($datalog3) == '') {
+                        if (implode($datalog3) == NULL or implode($datalog3) == '') {
                             $hasil3 = 0;
                         } else {
                             $hasil3 = implode($datalog3);
@@ -398,7 +398,7 @@
                         $querylog4 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $empat and year(acctstoptime) = $tahun";
                         $sqllog4 = mysqli_query($koneksi, $querylog4);
                         $datalog4 = mysqli_fetch_row($sqllog4);
-                        if(implode($datalog4) == NULL OR implode($datalog4) == '') {
+                        if (implode($datalog4) == NULL or implode($datalog4) == '') {
                             $hasil4 = 0;
                         } else {
                             $hasil4 = implode($datalog4);
@@ -430,11 +430,11 @@
                         $total_hari = mysqli_fetch_row($query_total_hari);
                         $tahun = date("Y");
                         $hari = $total_hari[0];
-                        
+
                         $hari_ini1 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 1";
                         $query_total_hari1 = mysqli_query($koneksi, $hari_ini1);
                         $total_hari1 = mysqli_fetch_row($query_total_hari1);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari1 = 0;
                         } else {
                             $hari1 = $total_hari1[0];
@@ -443,7 +443,7 @@
                         $hari_ini2 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 2";
                         $query_total_hari2 = mysqli_query($koneksi, $hari_ini2);
                         $total_hari2 = mysqli_fetch_row($query_total_hari2);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari2 = 0;
                         } else {
                             $hari2 = $total_hari2[0];
@@ -452,7 +452,7 @@
                         $hari_ini3 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 3";
                         $query_total_hari3 = mysqli_query($koneksi, $hari_ini3);
                         $total_hari3 = mysqli_fetch_row($query_total_hari3);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari3 = 0;
                         } else {
                             $hari3 = $total_hari3[0];
@@ -461,16 +461,16 @@
                         $hari_ini4 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 4";
                         $query_total_hari4 = mysqli_query($koneksi, $hari_ini4);
                         $total_hari4 = mysqli_fetch_row($query_total_hari4);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari4 = 0;
                         } else {
                             $hari4 = $total_hari4[0];
                         }
-                        
+
                         $hari_ini5 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 5";
                         $query_total_hari5 = mysqli_query($koneksi, $hari_ini5);
                         $total_hari5 = mysqli_fetch_row($query_total_hari5);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari5 = 0;
                         } else {
                             $hari5 = $total_hari5[0];
@@ -479,7 +479,7 @@
                         $hari_ini6 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 6";
                         $query_total_hari6 = mysqli_query($koneksi, $hari_ini6);
                         $total_hari6 = mysqli_fetch_row($query_total_hari6);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari6 = 0;
                         } else {
                             $hari6 = $total_hari6[0];
@@ -488,7 +488,7 @@
                         $hari_ini7 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 7";
                         $query_total_hari7 = mysqli_query($koneksi, $hari_ini7);
                         $total_hari7 = mysqli_fetch_row($query_total_hari7);
-                        if($total_hari1[0] == NULL OR $total_hari1[1] == '') {
+                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
                             $hari7 = 0;
                         } else {
                             $hari7 = $total_hari7[0];
@@ -511,7 +511,7 @@
                         </div>
 
 
-                       
+
 
 
                     </div>
@@ -523,14 +523,14 @@
 
                             <style>
                                 #map {
-                                    position: absolute;
+                                    position: relative;
                                     top: 0;
                                     bottom: 0;
                                     width: 100%;
                                 }
 
                                 .marker {
-                                    background-image: url('./assets/img/mapbox-icon.png');
+                                    background-image: url('./assets/img/mapbox-1.png');
                                     background-size: cover;
                                     width: 50px;
                                     height: 50px;
@@ -751,113 +751,114 @@
 <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
-        'November', 'Desember'],
-        datasets: [{
-            label: 'Jumlah',
-            data: [<?php echo $hasil1; ?> , <?php echo $hasil2; ?>, <?php echo $hasil3; ?> , <?php echo $hasil4; ?> , <?php echo $hasil5; ?> , <?php echo $hasil6; ?> , <?php echo $hasil7; ?> , <?php echo $hasil8; ?> , <?php echo $hasil9; ?> , <?php echo $hasil10; ?> , <?php echo $hasil11; ?> , <?php echo $hasil12; ?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
+        type: 'line',
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
+                'November', 'Desember'
             ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+            datasets: [{
+                label: 'Jumlah',
+                data: [<?php echo $hasil1; ?>, <?php echo $hasil2; ?>, <?php echo $hasil3; ?>, <?php echo $hasil4; ?>, <?php echo $hasil5; ?>, <?php echo $hasil6; ?>, <?php echo $hasil7; ?>, <?php echo $hasil8; ?>, <?php echo $hasil9; ?>, <?php echo $hasil10; ?>, <?php echo $hasil11; ?>, <?php echo $hasil12; ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
             responsive: true,
             hoverMode: 'index',
             stacked: true,
-        scales: {
-            yAxes: [{
+            scales: {
+                yAxes: [{
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
                     id: 'y-axis-1',
-                     ticks: {
-                    beginAtZero: true
-                }
-            }]
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
-});
+    });
 </script>
 
 <!-- mingguan -->
 <script>
     var ctx = document.getElementById('myChart2');
     var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
-        datasets: [{
-            label: 'Jumlah',
-            data: [<?php echo $hasil1; ?> , <?php echo $hasil2; ?>, <?php echo $hasil3; ?> , <?php echo $hasil4; ?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+        type: 'line',
+        data: {
+            labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+            datasets: [{
+                label: 'Jumlah',
+                data: [<?php echo $hasil1; ?>, <?php echo $hasil2; ?>, <?php echo $hasil3; ?>, <?php echo $hasil4; ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
             responsive: true,
             hoverMode: 'index',
             stacked: true,
-        scales: {
-            yAxes: [{
+            scales: {
+                yAxes: [{
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
                     id: 'y-axis-1',
-                     ticks: {
-                    beginAtZero: true
-                }
-            }]
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
-});
+    });
 </script>
 
 <!-- harian -->
 <script>
     var ctx = document.getElementById('myChart3');
     var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-        datasets: [{
-            label: 'Jumlah',
-            data: [<?php echo $hari1; ?> , <?php echo $hari2; ?>, <?php echo $hari3; ?> , <?php echo $hari4; ?>, <?php echo $hari5; ?>, <?php echo $hari6; ?>, <?php echo $hari7; ?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+        type: 'line',
+        data: {
+            labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+            datasets: [{
+                label: 'Jumlah',
+                data: [<?php echo $hari1; ?>, <?php echo $hari2; ?>, <?php echo $hari3; ?>, <?php echo $hari4; ?>, <?php echo $hari5; ?>, <?php echo $hari6; ?>, <?php echo $hari7; ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
             responsive: true,
             hoverMode: 'index',
             stacked: true,
-        scales: {
-            yAxes: [{
+            scales: {
+                yAxes: [{
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
                     id: 'y-axis-1',
-                     ticks: {
-                    beginAtZero: true
-                }
-            }]
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
-});
+    });
 </script>
