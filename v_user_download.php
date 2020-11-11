@@ -2,7 +2,7 @@
 include('./_partials/head.php');
 ?>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -66,15 +66,15 @@ include('./_partials/head.php');
                                                     echo $d . " Kb";
                                                 } ?></td>
                                             <td><?php if ($data[2] >= 1073741824) {
-                                                $rata = substr($data[2] / 1073741824, 0, 6);
-                                                echo $rata . " Gb";
-                                            } else if ($data[2] >= 1048576) {
-                                                $rata = substr($data[2] / 1048576, 0, 6);
-                                                echo $rata . " Mb";
-                                            } else {
-                                                $rata = substr($data[2] / 1024, 0, 6);
-                                                echo $rata . " Kb";
-                                            } ?></td>
+                                                    $rata = substr($data[2] / 1073741824, 0, 6);
+                                                    echo $rata . " Gb";
+                                                } else if ($data[2] >= 1048576) {
+                                                    $rata = substr($data[2] / 1048576, 0, 6);
+                                                    echo $rata . " Mb";
+                                                } else {
+                                                    $rata = substr($data[2] / 1024, 0, 6);
+                                                    echo $rata . " Kb";
+                                                } ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
