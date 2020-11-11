@@ -3,10 +3,9 @@
 <body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
 
     <!-- Mapbox -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+    <script src="./assets/dist/mapbox/js/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="./assets/dist/mapbox/css/mapbox-gl-geocoder.css" type="text/css" />
     <!-- Mapbox -->
-
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -80,9 +79,8 @@
                         $tahun = date("Y");
 
                         for ($bulan = 01; $bulan < 13; $bulan++) {
-                            $query_up_down=mysqli_query($koneksi, "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = '$bulan' and year(acctstoptime) = '$tahun'"
-                            ); 
-                            $row_up_down=$query_up_down->fetch_array();
+                            $query_up_down = mysqli_query($koneksi, "SELECT SUM(acctinputoctets) as 'upload' , SUM(acctoutputoctets) as 'download' FROM `radacct` WHERE acctstoptime > '0000-00-00 00:00:01' AND month(acctstoptime) = '$bulan' and year(acctstoptime) = '$tahun'");
+                            $row_up_down = $query_up_down->fetch_array();
                             $upload[] = substr($row_up_down['upload'] / 1073741824, 0, 11);
                             $download[] = substr($row_up_down['download'] / 1073741824, 0, 11);
                         }
@@ -109,20 +107,18 @@
                         include('./controller/koneksi.php');
                         date_default_timezone_set('Asia/Jakarta');
                         $tahun = date("Y");
-                        $label = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+                        $label = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-                        for($bulan = 1;$bulan < 13;$bulan++)
-                        {
-                            $query = mysqli_query($koneksi,"SELECT COUNT(*) as jumlah FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Accept'");
+                        for ($bulan = 1; $bulan < 13; $bulan++) {
+                            $query = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Accept'");
                             $row = $query->fetch_array();
                             $jumlah_id[] = $row['jumlah'];
 
-                            $query2 = mysqli_query($koneksi,"SELECT COUNT(*) as jumlah2 FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Reject'");
+                            $query2 = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah2 FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Reject'");
                             $row2 = $query2->fetch_array();
                             $jumlah_id2[] = $row2['jumlah2'];
-                           
                         }
-                        
+
                         ?>
 
                         <!-- LINE CHART -->
@@ -562,58 +558,59 @@
 <script>
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: <?php echo json_encode($label); ?>,
-        datasets: [{
-            label: 'Access',
-            data: <?php echo json_encode($jumlah_id); ?>,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
+        type: 'line',
+        data: {
+            labels: <?php echo json_encode($label); ?>,
+            datasets: [{
+                    label: 'Access',
+                    data: <?php echo json_encode($jumlah_id); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Reject',
+                    data: <?php echo json_encode($jumlah_id2); ?>,
+                    backgroundColor: [
+                        'rgba(54, 43, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 43, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }
+            ]
         },
-        {
-            label: 'Reject',
-            data: <?php echo json_encode($jumlah_id2); ?>,
-            backgroundColor: [
-                'rgba(54, 43, 207, 0.2)'
-            ],
-            borderColor: [
-                'rgba(54, 43, 207, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+        options: {
             responsive: true,
             hoverMode: 'index',
             stacked: true,
-        scales: {
-            yAxes: [{
+            scales: {
+                yAxes: [{
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
                     id: 'y-axis-1',
-                     ticks: {
-                    beginAtZero: true
+                    ticks: {
+                        beginAtZero: true
                     }
-                },{
+                }, {
                     type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                     display: true,
                     position: 'left',
                     id: 'y-axis-1',
-                     ticks: {
-                    beginAtZero: true
+                    ticks: {
+                        beginAtZero: true
                     }
-            }]
+                }]
 
+            }
         }
-    }
-});
+    });
 </script>
 
 <!-- mingguan -->
