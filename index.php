@@ -174,41 +174,77 @@
                             $tiga = $minggu - 1;
                             $empat = $minggu;
                         }
-
-                        $querylog1 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $satu and year(acctstoptime) = $tahun";
-                        $sqllog1 = mysqli_query($koneksi, $querylog1);
-                        $datalog1 = mysqli_fetch_row($sqllog1);
-                        if (implode($datalog1) == NULL or implode($datalog1) == '') {
-                            $hasil1 = 0;
+                        
+                        $queryacc1 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Accept'";
+                        $sqlacc1 = mysqli_query($koneksi, $queryacc1);
+                        $dataacc1 = mysqli_fetch_row($sqlacc1);
+                        if (implode($dataacc1) == NULL or implode($dataacc1) == '') {
+                            $hasilacc1 = 0;
                         } else {
-                            $hasil1 = implode($datalog1);
+                            $hasilacc1 = implode($dataacc1);
                         }
 
-                        $querylog2 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $dua and year(acctstoptime) = $tahun";
-                        $sqllog2 = mysqli_query($koneksi, $querylog2);
-                        $datalog2 = mysqli_fetch_row($sqllog2);
-                        if (implode($datalog2) == NULL or implode($datalog2) == '') {
-                            $hasil2 = 0;
+                        $queryrej1 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Reject'";
+                        $sqlrej1 = mysqli_query($koneksi, $queryrej1);
+                        $datarej1 = mysqli_fetch_row($sqlrej1);
+                        if (implode($datarej1) == NULL or implode($datarej1) == '') {
+                            $hasilrej1 = 0;
                         } else {
-                            $hasil2 = implode($datalog2);
+                            $hasilrej1 = implode($datarej1);
                         }
 
-                        $querylog3 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $tiga and year(acctstoptime) = $tahun";
-                        $sqllog3 = mysqli_query($koneksi, $querylog3);
-                        $datalog3 = mysqli_fetch_row($sqllog3);
-                        if (implode($datalog3) == NULL or implode($datalog3) == '') {
-                            $hasil3 = 0;
+                        $queryacc2 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Accept'";
+                        $sqlacc2 = mysqli_query($koneksi, $queryacc2);
+                        $dataacc2 = mysqli_fetch_row($sqlacc2);
+                        if (implode($dataacc2) == NULL or implode($dataacc2) == '') {
+                            $hasilacc2 = 0;
                         } else {
-                            $hasil3 = implode($datalog3);
+                            $hasilacc2 = implode($dataacc2);
                         }
 
-                        $querylog4 = "SELECT COUNT(*) AS jumlah_mingguan FROM radacct WHERE acctstoptime > '0000-00-00 00:00:01' AND date_format(accstarttime, '%u') = $empat and year(acctstoptime) = $tahun";
-                        $sqllog4 = mysqli_query($koneksi, $querylog4);
-                        $datalog4 = mysqli_fetch_row($sqllog4);
-                        if (implode($datalog4) == NULL or implode($datalog4) == '') {
-                            $hasil4 = 0;
+                        $queryrej2 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Reject'";
+                        $sqlrej2 = mysqli_query($koneksi, $queryrej2);
+                        $datarej2 = mysqli_fetch_row($sqlrej2);
+                        if (implode($datarej2) == NULL or implode($datarej2) == '') {
+                            $hasilrej2 = 0;
                         } else {
-                            $hasil4 = implode($datalog4);
+                            $hasilrej2 = implode($datarej2);
+                        }
+
+                        $queryacc3 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Accept'";
+                        $sqlacc3 = mysqli_query($koneksi, $queryacc3);
+                        $dataacc3 = mysqli_fetch_row($sqlacc3);
+                        if (implode($dataacc3) == NULL or implode($dataacc3) == '') {
+                            $hasilacc3 = 0;
+                        } else {
+                            $hasilacc3 = implode($dataacc3);
+                        }
+
+                        $queryrej3 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Reject'";
+                        $sqlrej3 = mysqli_query($koneksi, $queryrej3);
+                        $datarej3 = mysqli_fetch_row($sqlrej3);
+                        if (implode($datarej3) == NULL or implode($datarej3) == '') {
+                            $hasilrej3 = 0;
+                        } else {
+                            $hasilrej3 = implode($datarej3);
+                        }
+
+                        $queryacc4 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Accept'";
+                        $sqlacc4 = mysqli_query($koneksi, $queryacc4);
+                        $dataacc4 = mysqli_fetch_row($sqlacc4);
+                        if (implode($dataacc4) == NULL or implode($dataacc4) == '') {
+                            $hasilacc4 = 0;
+                        } else {
+                            $hasilacc4 = implode($dataacc4);
+                        }
+
+                        $queryrej4 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Reject'";
+                        $sqlrej4 = mysqli_query($koneksi, $queryrej4);
+                        $datarej4 = mysqli_fetch_row($sqlrej4);
+                        if (implode($datarej4) == NULL or implode($datarej4) == '') {
+                            $hasilrej4 = 0;
+                        } else {
+                            $hasilrej4 = implode($datarej4);
                         }
 
                         ?>
@@ -232,75 +268,27 @@
 
                         <!-- harian -->
                         <?php
+                        include('./controller/koneksi.php');
+                        date_default_timezone_set('Asia/Jakarta');
+                        $tahun = date("Y");
                         $hari_ini = "SELECT date_format(now(),'%u')";
                         $query_total_hari = mysqli_query($koneksi, $hari_ini);
                         $total_hari = mysqli_fetch_row($query_total_hari);
-                        $tahun = date("Y");
-                        $hari = $total_hari[0];
+                        $minggu = $total_hari[0];
+                        
+                        for ($day = 1; $day < 8; $day++) {
+                            $queryhr = mysqli_query($koneksi, "SELECT COUNT(*) as jumlahr FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Accept'");
+                            $rowhr = $queryhr->fetch_array();
+                            $jumlah_idhr[] = $rowhr['jumlahr'];
 
-                        $hari_ini1 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 1";
-                        $query_total_hari1 = mysqli_query($koneksi, $hari_ini1);
-                        $total_hari1 = mysqli_fetch_row($query_total_hari1);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari1 = 0;
-                        } else {
-                            $hari1 = $total_hari1[0];
+                            $queryhr2 = mysqli_query($koneksi, "SELECT COUNT(*) as jumlahr2 FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Reject'");
+                            $rowhr2 = $queryhr2->fetch_array();
+                            $jumlah_idhr2[] = $rowhr2['jumlahr2'];
                         }
 
-                        $hari_ini2 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 2";
-                        $query_total_hari2 = mysqli_query($koneksi, $hari_ini2);
-                        $total_hari2 = mysqli_fetch_row($query_total_hari2);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari2 = 0;
-                        } else {
-                            $hari2 = $total_hari2[0];
-                        }
-
-                        $hari_ini3 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 3";
-                        $query_total_hari3 = mysqli_query($koneksi, $hari_ini3);
-                        $total_hari3 = mysqli_fetch_row($query_total_hari3);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari3 = 0;
-                        } else {
-                            $hari3 = $total_hari3[0];
-                        }
-
-                        $hari_ini4 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 4";
-                        $query_total_hari4 = mysqli_query($koneksi, $hari_ini4);
-                        $total_hari4 = mysqli_fetch_row($query_total_hari4);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari4 = 0;
-                        } else {
-                            $hari4 = $total_hari4[0];
-                        }
-
-                        $hari_ini5 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 5";
-                        $query_total_hari5 = mysqli_query($koneksi, $hari_ini5);
-                        $total_hari5 = mysqli_fetch_row($query_total_hari5);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari5 = 0;
-                        } else {
-                            $hari5 = $total_hari5[0];
-                        }
-
-                        $hari_ini6 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 6";
-                        $query_total_hari6 = mysqli_query($koneksi, $hari_ini6);
-                        $total_hari6 = mysqli_fetch_row($query_total_hari6);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari6 = 0;
-                        } else {
-                            $hari6 = $total_hari6[0];
-                        }
-
-                        $hari_ini7 = "SELECT count(*) FROM radacct WHERE year(acctstarttime) = $tahun AND date_format(acctstarttime,'%u') = $hari AND date_format(acctstarttime,'%w') = 7";
-                        $query_total_hari7 = mysqli_query($koneksi, $hari_ini7);
-                        $total_hari7 = mysqli_fetch_row($query_total_hari7);
-                        if ($total_hari1[0] == NULL or $total_hari1[1] == '') {
-                            $hari7 = 0;
-                        } else {
-                            $hari7 = $total_hari7[0];
-                        }
                         ?>
+
+                        
 
                         <!-- LINE CHART -->
                         <div class="card col-6">
@@ -621,16 +609,28 @@
         data: {
             labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
             datasets: [{
-                label: 'Jumlah',
-                data: [<?php echo $hasil1; ?>, <?php echo $hasil2; ?>, <?php echo $hasil3; ?>, <?php echo $hasil4; ?>],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
+                    label: 'Access',
+                    data: [<?php echo $hasilacc1; ?>, <?php echo $hasilacc2; ?>, <?php echo $hasilacc3; ?>, <?php echo $hasilacc4; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Reject',
+                    data: [<?php echo $hasilrej1; ?>, <?php echo $hasilrej2; ?>, <?php echo $hasilrej3; ?>, <?php echo $hasilrej4; ?>],
+                    backgroundColor: [
+                        'rgba(54, 43, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 43, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -659,16 +659,28 @@
         data: {
             labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
             datasets: [{
-                label: 'Jumlah',
-                data: [<?php echo $hari1; ?>, <?php echo $hari2; ?>, <?php echo $hari3; ?>, <?php echo $hari4; ?>, <?php echo $hari5; ?>, <?php echo $hari6; ?>, <?php echo $hari7; ?>],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
+                    label: 'Access',
+                    data: <?php echo json_encode($jumlah_idhr); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Reject',
+                    data: <?php echo json_encode($jumlah_idhr2); ?>,
+                    backgroundColor: [
+                        'rgba(54, 43, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 43, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -683,8 +695,18 @@
                     ticks: {
                         beginAtZero: true
                     }
+                }, {
+                    type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-1',
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
+
             }
         }
     });
 </script>
+
