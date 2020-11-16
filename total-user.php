@@ -40,7 +40,7 @@ include('./_partials/head.php');
                                 <tbody>
                                     <?php
                                     include('./controller/koneksi.php');
-                                    $sqlCommand = mysqli_query($koneksi,"SELECT * FROM radcheck");
+                                    $sqlCommand = mysqli_query($koneksi,"SELECT username,value FROM radcheck");
                                     while ($data = mysqli_fetch_array($sqlCommand)) {
                                     ?>
                                         <tr>

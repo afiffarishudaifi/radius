@@ -29,7 +29,7 @@
                                 <div class="inner">
                                     <?php
                                     include('./controller/koneksi.php');
-                                    $sqlCommand = "SELECT COUNT(*) FROM radcheck";
+                                    $sqlCommand = "SELECT COUNT(id) FROM radcheck";
                                     $query_total_user = mysqli_query($koneksi, $sqlCommand);
                                     $total_user = mysqli_fetch_row($query_total_user);
                                     mysqli_close($koneksi);
@@ -51,7 +51,7 @@
                                 <div class="inner">
                                     <?php
                                     include('./controller/koneksi.php');
-                                    $sql_online = "SELECT COUNT(*) FROM radacct WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND (radacct.Username LIKE '%jss%')";
+                                    $sql_online = "SELECT COUNT(radacctid) FROM radacct WHERE (radacct.AcctStopTime IS NULL OR radacct.AcctStopTime = '0000-00-00 00:00:00') AND (radacct.Username LIKE '%jss%')";
                                     $query_total_online = mysqli_query($koneksi, $sql_online);
                                     $total_online = mysqli_fetch_row($query_total_online);
                                     mysqli_close($koneksi);
@@ -110,11 +110,11 @@
                         $label = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
                         for ($bulan = 1; $bulan < 13; $bulan++) {
-                            $query = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Accept'");
+                            $query = mysqli_query($koneksi, "SELECT COUNT(id) as jumlah FROM radpostauth WHERE MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Accept'");
                             $row = $query->fetch_array();
                             $jumlah_id[] = $row['jumlah'];
 
-                            $query2 = mysqli_query($koneksi, "SELECT COUNT(*) as jumlah2 FROM radpostauth WHERE authdate > '0000-00-00 00:00:01' AND MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Reject'");
+                            $query2 = mysqli_query($koneksi, "SELECT COUNT(id) as jumlah2 FROM radpostauth WHERE MONTH(authdate)=$bulan and year(authdate) = $tahun and reply = 'Access-Reject'");
                             $row2 = $query2->fetch_array();
                             $jumlah_id2[] = $row2['jumlah2'];
                         }
