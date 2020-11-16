@@ -175,7 +175,7 @@
                             $empat = $minggu;
                         }
                         
-                        $queryacc1 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Accept'";
+                        $queryacc1 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Accept'";
                         $sqlacc1 = mysqli_query($koneksi, $queryacc1);
                         $dataacc1 = mysqli_fetch_row($sqlacc1);
                         if (implode($dataacc1) == NULL or implode($dataacc1) == '') {
@@ -184,7 +184,7 @@
                             $hasilacc1 = implode($dataacc1);
                         }
 
-                        $queryrej1 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Reject'";
+                        $queryrej1 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $satu AND reply='Access-Reject'";
                         $sqlrej1 = mysqli_query($koneksi, $queryrej1);
                         $datarej1 = mysqli_fetch_row($sqlrej1);
                         if (implode($datarej1) == NULL or implode($datarej1) == '') {
@@ -193,7 +193,7 @@
                             $hasilrej1 = implode($datarej1);
                         }
 
-                        $queryacc2 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Accept'";
+                        $queryacc2 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Accept'";
                         $sqlacc2 = mysqli_query($koneksi, $queryacc2);
                         $dataacc2 = mysqli_fetch_row($sqlacc2);
                         if (implode($dataacc2) == NULL or implode($dataacc2) == '') {
@@ -202,7 +202,7 @@
                             $hasilacc2 = implode($dataacc2);
                         }
 
-                        $queryrej2 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Reject'";
+                        $queryrej2 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $dua AND reply='Access-Reject'";
                         $sqlrej2 = mysqli_query($koneksi, $queryrej2);
                         $datarej2 = mysqli_fetch_row($sqlrej2);
                         if (implode($datarej2) == NULL or implode($datarej2) == '') {
@@ -211,7 +211,7 @@
                             $hasilrej2 = implode($datarej2);
                         }
 
-                        $queryacc3 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Accept'";
+                        $queryacc3 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Accept'";
                         $sqlacc3 = mysqli_query($koneksi, $queryacc3);
                         $dataacc3 = mysqli_fetch_row($sqlacc3);
                         if (implode($dataacc3) == NULL or implode($dataacc3) == '') {
@@ -220,7 +220,7 @@
                             $hasilacc3 = implode($dataacc3);
                         }
 
-                        $queryrej3 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Reject'";
+                        $queryrej3 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $tiga AND reply='Access-Reject'";
                         $sqlrej3 = mysqli_query($koneksi, $queryrej3);
                         $datarej3 = mysqli_fetch_row($sqlrej3);
                         if (implode($datarej3) == NULL or implode($datarej3) == '') {
@@ -229,7 +229,7 @@
                             $hasilrej3 = implode($datarej3);
                         }
 
-                        $queryacc4 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Accept'";
+                        $queryacc4 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Accept'";
                         $sqlacc4 = mysqli_query($koneksi, $queryacc4);
                         $dataacc4 = mysqli_fetch_row($sqlacc4);
                         if (implode($dataacc4) == NULL or implode($dataacc4) == '') {
@@ -238,7 +238,7 @@
                             $hasilacc4 = implode($dataacc4);
                         }
 
-                        $queryrej4 = "SELECT COUNT(*) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Reject'";
+                        $queryrej4 = "SELECT COUNT(id) as jumlah FROM radpostauth WHERE year(authdate) = $tahun AND month(authdate) = $bulan AND date_format(authdate,'%u') = $empat AND reply='Access-Reject'";
                         $sqlrej4 = mysqli_query($koneksi, $queryrej4);
                         $datarej4 = mysqli_fetch_row($sqlrej4);
                         if (implode($datarej4) == NULL or implode($datarej4) == '') {
@@ -277,11 +277,11 @@
                         $minggu = $total_hari[0];
                         
                         for ($day = 1; $day < 8; $day++) {
-                            $queryhr = mysqli_query($koneksi, "SELECT COUNT(*) as jumlahr FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Accept'");
+                            $queryhr = mysqli_query($koneksi, "SELECT COUNT(authdate) as jumlahr FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Accept'");
                             $rowhr = $queryhr->fetch_array();
                             $jumlah_idhr[] = $rowhr['jumlahr'];
 
-                            $queryhr2 = mysqli_query($koneksi, "SELECT COUNT(*) as jumlahr2 FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Reject'");
+                            $queryhr2 = mysqli_query($koneksi, "SELECT COUNT(authdate) as jumlahr2 FROM radpostauth WHERE year(authdate) = $tahun AND date_format(authdate,'%u') = $minggu AND date_format(authdate,'%w') = $day and reply = 'Access-Reject'");
                             $rowhr2 = $queryhr2->fetch_array();
                             $jumlah_idhr2[] = $rowhr2['jumlahr2'];
                         }
